@@ -119,32 +119,18 @@
             filter: drop-shadow(0 5px 15px rgba(64, 224, 208, 0.5));
         }
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            position: relative;
+        /* Logo da SignaProd */
+        .logo-image {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            filter: drop-shadow(0 2px 8px rgba(64, 224, 208, 0.2));
+            transition: all 0.3s ease;
         }
 
-        .logo-icon svg {
-            width: 100%;
-            height: 100%;
-            color: var(--primary);
-            filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.5));
-            animation: logo-pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes logo-pulse {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(64, 224, 208, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(64, 224, 208, 0.8)); }
-        }
-
-        .logo-text {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+        .logo-signaprod:hover .logo-image {
+            transform: translateY(-1px);
+            filter: drop-shadow(0 4px 12px rgba(64, 224, 208, 0.3));
         }
 
         /* Navigation */
@@ -816,6 +802,10 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .logo-image {
+                height: 45px;
+            }
         }
 
         /* Loading State */
@@ -871,38 +861,17 @@
     <div class="bg-grid"></div>
     <div class="particles" id="particles"></div>
 
-     </div>
+    <!-- Contact Toggle Button -->
+    <div class="contact-toggle" onclick="toggleContactMenu()">
+        <i class="fas fa-envelope"></i>
+    </div>
 
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav>
                 <a href="#home" class="logo-signaprod">
-                    <div class="logo-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
-                            <g>
-                                <!-- Globo -->
-                                <circle cx="150" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="10"/>
-                                <!-- Linhas do globo -->
-                                <path d="M150 20 L150 180" stroke="currentColor" stroke-width="6" fill="none"/>
-                                <path d="M70 100 L230 100" stroke="currentColor" stroke-width="6" fill="none"/>
-                                <path d="M80 50 C100 30, 200 30, 220 50" stroke="currentColor" stroke-width="6" fill="none"/>
-                                <path d="M80 150 C100 170, 200 170, 220 150" stroke="currentColor" stroke-width="6" fill="none"/>
-                                <!-- Conexões e nós -->
-                                <rect x="130" y="190" width="40" height="10" fill="currentColor"/>
-                                <rect x="95" y="220" width="40" height="10" fill="currentColor"/>
-                                <rect x="165" y="220" width="40" height="10" fill="currentColor"/>
-                                <!-- Nós -->
-                                <rect x="90" y="230" width="10" height="10" fill="currentColor"/>
-                                <rect x="145" y="230" width="10" height="10" fill="currentColor"/>
-                                <rect x="200" y="230" width="10" height="10" fill="currentColor"/>
-                                <!-- Detalhe luminoso -->
-                                <path d="M240 60 L260 40" stroke="currentColor" stroke-width="6"/>
-                                <path d="M255 40 L265 50" stroke="currentColor" stroke-width="6"/>
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="logo-text">SignaProd</div>
+                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd" class="logo-image">
                 </a>
                 
                 <div class="nav-links">
@@ -921,6 +890,14 @@
         <a href="#home" onclick="toggleMobileMenu()">Início</a>
         <a href="#services" onclick="toggleMobileMenu()">Serviços</a>
         <a href="#contact" onclick="toggleMobileMenu()">Contato</a>
+    </div>
+
+    <!-- Contact Menu -->
+    <div class="contact-menu" id="contactMenu">
+        <button class="contact-menu-close" onclick="toggleContactMenu()">&times;</button>
+        <h3>Contato Rápido</h3>
+        <p>comercial@signaprod.com</p>       
+        <a href="#contact" onclick="toggleContactMenu(); scrollToContact();">Formulário de Contato</a>
     </div>
 
     <!-- Hero Section -->
@@ -989,21 +966,20 @@
                     <h3>Criação de Agentes de IA</h3>
                     <p>Otimização de fluxos de trabalho e processos com agentes de IA personalizados, desenvolvidos especificamente para as necessidades da sua empresa.</p>
                 </div>
-               <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-search-plus"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                    <h3>Criação de RAG Personalizado</h3>
+                    <p>Tenha seu próprio sistema RAG! Desenvolvemos soluções de Retrieval-Augmented Generation que permitem que sua IA acesse e processe seus documentos e dados específicos com alta precisão.</p>
                 </div>
-                <h3>Criação de RAG Personalizado</h3>
-                <p>Tenha seu próprio sistema RAG! Desenvolvemos soluções de Retrieval-Augmented Generation que permitem que sua IA acesse e processe seus documentos e dados específicos com alta precisão.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <i class="fas fa-stopwatch"></i>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <h3>Desenvolvimento de MVP</h3>
+                    <p>Acelere sua validação de mercado com MVPs otimizados. Desenvolvemos protótipos funcionais rapidamente, focando na entrega ágil para testar suas hipóteses de negócio.</p>
                 </div>
-                <h3>Desenvolvimento de MVP</h3>
-                <p>Acelere sua validação de mercado com MVPs otimizados. Desenvolvemos protótipos funcionais rapidamente, focando na entrega ágil para testar suas hipóteses de negócio.</p>
-            </div>
-            </div>
             </div>
         </div>
     </section>
@@ -1062,6 +1038,8 @@
             <div class="service-option" onclick="selectService('Alocação de Profissionais de TI')">Alocação de Profissionais de TI</div>
             <div class="service-option" onclick="selectService('Transformação Digital com IA')">Transformação Digital com IA</div>
             <div class="service-option" onclick="selectService('Criação de Agentes de IA')">Criação de Agentes de IA</div>
+            <div class="service-option" onclick="selectService('Criação de RAG Personalizado')">Criação de RAG Personalizado</div>
+            <div class="service-option" onclick="selectService('Desenvolvimento de MVP')">Desenvolvimento de MVP</div>
         </div>
     </div>
 
@@ -1148,6 +1126,17 @@
         function selectService(service) {
             document.getElementById('selectedService').value = service;
             closeServicePopup();
+        }
+
+        // Função para rolar suavemente até o contato
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
 
         // Form Submission
@@ -1297,17 +1286,6 @@
             }
         `;
         document.head.appendChild(style);
-
-        // Função para rolar suavemente até o contato
-    function scrollToContact() {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-        contactSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    }
-}
     </script>
 </body>
 </html>
