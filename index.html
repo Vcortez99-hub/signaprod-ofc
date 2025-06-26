@@ -499,6 +499,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .service-card::before {
@@ -518,6 +519,27 @@
         .service-card:hover {
             transform: translateY(-10px);
             border-color: transparent;
+            cursor: pointer;
+        }
+
+        .service-link {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-link {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .service-card:hover::before {
@@ -925,47 +947,71 @@
                 <p>Soluções estratégicas para impulsionar sua transformação digital</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/desenvolvimento-produtos.html'">
                     <div class="service-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3>Otimização de Processos Organizacionais</h3>
-                    <p>Clareza nos processos da sua empresa e maior eficiência em todas as áreas, uma consultoria completa com os melhores especialistas!</p>
+                    <h3>Desenvolvimento de Produtos</h3>
+                    <p>Criação de soluções tecnológicas inovadoras desde a concepção até a entrega final.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/alocacao-profissionais.html'">
                     <div class="service-icon">
                         <i class="fas fa-user-plus"></i>
                     </div>
                     <h3>Alocação de Profissionais de TI</h3>
-                    <p>Identificação e alocação dos melhores talentos em tecnologia, garantindo que sua equipe tenha as habilidades necessárias para enfrentar os desafios do mercado atual.</p>
+                    <p>Identificação e alocação dos melhores talentos em tecnologia para sua equipe.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/transformacao-digital.html'">
                     <div class="service-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Transformação Digital com IA</h3>
-                    <p>Implementação de estratégias de transformação digital que integram inteligência artificial para automatizar processos e melhorar a tomada de decisões.</p>
+                    <p>Implementação de estratégias de transformação digital com inteligência artificial.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/agentes-ia.html'">
                     <div class="service-icon">
                         <i class="fas fa-magic"></i>
                     </div>
                     <h3>Criação de Agentes de IA</h3>
-                    <p>Otimização de fluxos de trabalho e processos com agentes de IA personalizados, desenvolvidos especificamente para as necessidades da sua empresa.</p>
+                    <p>Otimização de fluxos de trabalho com agentes de IA personalizados para sua empresa.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/rag-personalizado.html'">
                     <div class="service-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                     <h3>Criação de RAG Personalizado</h3>
-                    <p>Tenha seu próprio sistema RAG! Desenvolvemos soluções de Retrieval-Augmented Generation que permitem que sua IA acesse e processe seus documentos e dados específicos com alta precisão.</p>
+                    <p>Soluções de Retrieval-Augmented Generation para seus documentos e dados específicos.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card" onclick="window.location.href='servicos/desenvolvimento-mvp.html'">
                     <div class="service-icon">
                         <i class="fas fa-stopwatch"></i>
                     </div>
                     <h3>Desenvolvimento de MVP</h3>
-                    <p>Acelere sua validação de mercado com MVPs otimizados. Desenvolvemos protótipos funcionais rapidamente, focando na entrega ágil para testar suas hipóteses de negócio.</p>
+                    <p>Acelere sua validação de mercado com MVPs otimizados e entrega ágil.</p>
+                    <div class="service-link">
+                        <span>Saiba mais</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
                 </div>
             </div>
         </div>
