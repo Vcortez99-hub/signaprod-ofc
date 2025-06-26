@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otimização de Processos - SignaProd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #40E0D0;
+            --primary-dark: #2FB5A7;
+            --secondary: #00CED1;
+            --accent: #00FFFF;
+            --dark: #0a0e27;
+            --darker: #060818;
+            --light: #ffffff;
+            --gray: #94a3b8;
+            --gradient-primary: linear-gradient(135deg, #40E0D0 0%, #00CED1 50%, #00FFFF 100%);
+            --gradient-dark: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            --gradient-mesh: radial-gradient(at 40% 20%, hsla(189, 100%, 56%, 0.3) 0px, transparent 50%),
+                            radial-gradient(at 80% 0%, hsla(189, 100%, 70%, 0.2) 0px, transparent 50%),
+                            radial-gradient(at 0% 50%, hsla(189, 100%, 60%, 0.2) 0px, transparent 50%),
+                            radial-gradient(at 80% 50%, hsla(189, 100%, 65%, 0.15) 0px, transparent 50%),
+                            radial-gradient(at 0% 100%, hsla(189, 100%, 75%, 0.2) 0px, transparent 50%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background: var(--darker);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-mesh);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Animated Background Grid */
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(64, 224, 208, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(64, 224, 208, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-move 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Particles Animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: particle-float 15s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(64, 224, 208, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.75rem 0;
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo SignaProd */
+        .logo-signaprod {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .logo-signaprod:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 5px 15px rgba(64, 224, 208, 0.5));
+        }
+
+        .logo-image {
+            height: 60px;
+            width: auto;
+            border-radius: 8px;
+            filter: drop-shadow(0 2px 8px rgba(64, 224, 208, 0.2));
+            transition: all 0.3s ease;
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        /* Common Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(64, 224, 208, 0.5);
+        }
+
+        /* Hero Diagram */
+        .hero-diagram {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-diagram svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(64, 224, 208, 0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        /* Process Section */
+        .process {
+            background: rgba(10, 14, 39, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+        }
+
+        .process-step:hover::before {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(64, 224, 208, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        .process-step h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .process-step p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .process-step:hover h3,
+        .process-step:hover p {
+            color: var(--dark);
+        }
+
+        /* Technologies Section */
+        .technologies {
+            position: relative;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .tech-category {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 280px;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .tech-category h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(64, 224, 208, 0.1);
+        }
+
+
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.05) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(64, 224, 208, 0.05);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(64, 224, 208, 0.1);
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(148, 163, 184, 0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Service Popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(10, 14, 39, 0.98);
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1002;
+        }
+
+        .service-popup.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .service-option {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(64, 224, 208, 0.1);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .service-option:hover {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: translateX(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin-bottom: 3rem;
+            }
+
+            .hero-diagram svg {
+                max-width: 300px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="../index.html" class="logo-signaprod">
+                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd" class="logo-image">
+                </a>
+                
+                <div class="nav-links">
+                    <a href="../index.html#home">Home</a>
+                    <a href="../index.html#services">Serviços</a>
+                    <a href="#contact">Contato</a>
+                </div>
+
+                <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="display: flex; align-items: center; gap: 4rem;">
+            <div class="hero-content">
+                <a href="../index.html#services" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar aos Serviços
+                </a>
+                
+                <h1>Otimização de Processos Empresariais</h1>
+                <p>Automatizamos e otimizamos seus processos empresariais, eliminando gargalos e aumentando a eficiência operacional através de tecnologia inteligente.</p>
+                
+                <a href="#contact" class="cta-button">
+                    Solicitar Análise Gratuita
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="hero-diagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                    <!-- Process Optimization Diagram -->
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#40E0D0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Main Process Flow -->
+                    <rect x="50" y="120" width="80" height="60" rx="10" fill="rgba(255, 100, 100, 0.3)" stroke="#ff6464" stroke-width="2"/>
+                    <text x="90" y="140" text-anchor="middle" fill="#ff6464" font-size="10" font-weight="bold">Processo</text>
+                    <text x="90" y="155" text-anchor="middle" fill="#ff6464" font-size="10" font-weight="bold">Atual</text>
+                    <text x="90" y="170" text-anchor="middle" fill="#ff6464" font-size="8">Lento</text>
+                    
+                    <!-- Arrow of Transformation -->
+                    <path d="M 140 150 Q 200 100 260 150" stroke="url(#grad1)" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                    <text x="200" y="110" text-anchor="middle" fill="#40E0D0" font-size="12" font-weight="bold">Otimização</text>
+                    
+                    <!-- Optimized Process -->
+                    <rect x="270" y="120" width="80" height="60" rx="10" fill="url(#grad1)" filter="url(#glow)"/>
+                    <text x="310" y="140" text-anchor="middle" fill="#0a0e27" font-size="10" font-weight="bold">Processo</text>
+                    <text x="310" y="155" text-anchor="middle" fill="#0a0e27" font-size="10" font-weight="bold">Otimizado</text>
+                    <text x="310" y="170" text-anchor="middle" fill="#0a0e27" font-size="8">Eficiente</text>
+                    
+                    <!-- Arrow marker -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#40E0D0"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Optimization elements around -->
+                    <!-- Analytics -->
+                    <circle cx="150" cy="50" r="20" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="150" y="57" text-anchor="middle" fill="#40E0D0" font-size="16">📊</text>
+                    <text x="150" y="80" text-anchor="middle" fill="#40E0D0" font-size="10">Analytics</text>
+                    
+                    <!-- Automation -->
+                    <circle cx="250" cy="50" r="20" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="250" y="57" text-anchor="middle" fill="#40E0D0" font-size="16">🤖</text>
+                    <text x="250" y="80" text-anchor="middle" fill="#40E0D0" font-size="10">Automação</text>
+                    
+                    <!-- KPIs -->
+                    <circle cx="100" cy="230" r="20" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="100" y="237" text-anchor="middle" fill="#40E0D0" font-size="16">📈</text>
+                    <text x="100" y="260" text-anchor="middle" fill="#40E0D0" font-size="10">KPIs</text>
+                    
+                    <!-- Integration -->
+                    <circle cx="300" cy="230" r="20" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="300" y="237" text-anchor="middle" fill="#40E0D0" font-size="16">🔗</text>
+                    <text x="300" y="260" text-anchor="middle" fill="#40E0D0" font-size="10">Integração</text>
+                    
+                    <!-- Connecting lines to show improvement -->
+                    <line x1="130" y1="65" x2="110" y2="130" stroke="#40E0D0" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+                    <line x1="270" y1="65" x2="290" y2="130" stroke="#40E0D0" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+                    <line x1="120" y1="215" x2="270" y2="170" stroke="#40E0D0" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+                    <line x1="280" y1="215" x2="320" y2="180" stroke="#40E0D0" stroke-width="1" opacity="0.6" stroke-dasharray="3,3"/>
+                    
+                    <!-- Efficiency indicators -->
+                    <text x="90" y="200" text-anchor="middle" fill="#ff6464" font-size="8">-60% Tempo</text>
+                    <text x="310" y="200" text-anchor="middle" fill="#40E0D0" font-size="8">+300% Eficiência</text>
+                    
+                    <!-- Floating efficiency particles -->
+                    <circle cx="50" cy="80" r="2" fill="#40E0D0" opacity="0.8">
+                        <animate attributeName="cy" values="80;70;80" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="350" cy="100" r="2" fill="#00FFFF" opacity="0.8">
+                        <animate attributeName="cy" values="100;110;100" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="200" cy="250" r="2" fill="#40E0D0" opacity="0.6">
+                        <animate attributeName="cy" values="250;240;250" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossa Metodologia de Otimização</h2>
+                <p>Um processo estruturado que identifica oportunidades e implementa soluções de alto impacto</p>
+            </div>
+            
+            <div class="process-grid">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Diagnóstico Completo</h3>
+                    <p>Mapeamos todos os processos atuais, identificamos gargalos, redundâncias e oportunidades de melhoria através de análise detalhada.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Análise de Dados</h3>
+                    <p>Coletamos e analisamos dados históricos para entender padrões, métricas de performance e pontos críticos de otimização.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Design de Solução</h3>
+                    <p>Projetamos workflows otimizados, definimos automações estratégicas e criamos planos de implementação personalizados.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Automação Inteligente</h3>
+                    <p>Implementamos ferramentas de automação, integrações de sistemas e soluções de IA para maximizar a eficiência.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">5</div>
+                    <h3>Teste e Validação</h3>
+                    <p>Executamos testes piloto, coletamos feedback da equipe e ajustamos os processos para garantir máxima efetividade.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">6</div>
+                    <h3>Monitoramento Contínuo</h3>
+                    <p>Estabelecemos KPIs, dashboards de monitoramento e processos de melhoria contínua para resultados sustentáveis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ferramentas de Otimização</h2>
+                <p>Utilizamos as melhores tecnologias para automatizar, integrar e otimizar seus processos</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automação (RPA)</h3>
+                    <ul class="tech-list">
+                        <li>UiPath & Automation Anywhere</li>
+                        <li>Microsoft Power Automate</li>
+                        <li>Zapier & IFTTT</li>
+                        <li>Scripts Personalizados</li>
+                        <li>APIs de Integração</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Business Intelligence</h3>
+                    <ul class="tech-list">
+                        <li>Power BI & Tableau</li>
+                        <li>Google Analytics</li>
+                        <li>Dashboards Personalizados</li>
+                        <li>Data Warehousing</li>
+                        <li>Relatórios Automatizados</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Workflow Management</h3>
+                    <ul class="tech-list">
+                        <li>Monday.com & Asana</li>
+                        <li>Notion & Airtable</li>
+                        <li>Sistemas CRM/ERP</li>
+                        <li>Gestão de Documentos</li>
+                        <li>Aprovações Digitais</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligência Artificial</h3>
+                    <ul class="tech-list">
+                        <li>Machine Learning</li>
+                        <li>Processamento de Linguagem</li>
+                        <li>Análise Preditiva</li>
+                        <li>Computer Vision</li>
+                        <li>Chatbots Inteligentes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Análise Gratuita dos Seus Processos</h2>
+                <p>Solicite uma avaliação completa e descubra como podemos otimizar sua operação</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xyzjnkor" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectedService">Serviço</label>
+                            <input type="text" id="selectedService" name="service" value="Otimização de Processos" readonly style="cursor: pointer;" onclick="openServicePopup()" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Descreva os processos que deseja otimizar</label>
+                            <textarea id="message" name="message" placeholder="Conte-nos sobre os processos atuais, principais desafios e objetivos de melhoria..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Solicitar Análise Gratuita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Selection Popup -->
+    <div class="overlay" id="serviceOverlay" onclick="closeServicePopup()"></div>
+    <div class="service-popup" id="servicePopup">
+        <div class="service-popup-content">
+            <div class="service-option" onclick="selectService('Otimização de Processos')">Otimização de Processos</div>
+            <div class="service-option" onclick="selectService('Desenvolvimento de Produtos')">Desenvolvimento de Produtos</div>
+            <div class="service-option" onclick="selectService('Alocação de Profissionais de TI')">Alocação de Profissionais de TI</div>
+            <div class="service-option" onclick="selectService('Transformação Digital com IA')">Transformação Digital com IA</div>
+            <div class="service-option" onclick="selectService('Criação de Agentes de IA')">Criação de Agentes de IA</div>
+            <div class="service-option" onclick="selectService('Criação de RAG Personalizado')">Criação de RAG Personalizado</div>
+            <div class="service-option" onclick="selectService('Desenvolvimento de MVP')">Desenvolvimento de MVP</div>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Particles Generation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Service Popup Functions
+        function openServicePopup() {
+            document.getElementById('servicePopup').classList.add('active');
+            document.getElementById('serviceOverlay').classList.add('active');
+        }
+
+        function closeServicePopup() {
+            document.getElementById('servicePopup').classList.remove('active');
+            document.getElementById('serviceOverlay').classList.remove('active');
+        }
+
+        function selectService(service) {
+            document.getElementById('selectedService').value = service;
+            closeServicePopup();
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Validação adicional
+            const email = form.email.value;
+            const phone = form.phone.value;
+            
+            // Validação de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+            
+            // Mostrar loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Sucesso
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    
+                    setTimeout(() => {
+                        alert('Solicitação enviada com sucesso! Nossa equipe entrará em contato em breve para agendar sua análise gratuita de processos.');
+                        form.reset();
+                        document.getElementById('selectedService').value = 'Otimização de Processos';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                        window.location.href = '../index.html#home';
+                    }, 2000);
+                } else {
+                    throw new Error('Erro ao enviar');
+                }
+            })
+            .catch(error => {
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> Erro ao Enviar';
+                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                
+                setTimeout(() => {
+                    alert('Erro ao enviar o formulário. Por favor, tente novamente ou entre em contato por email: comercial@signaprod.com');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // Phone Mask
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+            }
+            e.target.value = value;
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Mobile Menu Toggle (if needed)
+        function toggleMobileMenu() {
+            // Add mobile menu functionality if needed
+        }
+    </script>
+</body>
+</html>
