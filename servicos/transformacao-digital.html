@@ -203,12 +203,28 @@
 
         /* Hero Section */
         .hero {
+            padding: 120px 0 80px;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .hero-content {
@@ -276,6 +292,20 @@
             background: var(--primary);
             color: var(--dark);
             transform: translateY(-2px);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
         }
 
         @keyframes fadeInUp {
@@ -659,6 +689,11 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
+                <a href="../index.html#services" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar aos Serviços
+                </a>
+                
                 <h1>Transformação Digital com IA</h1>
                 <p>Revolucione sua empresa com soluções de inteligência artificial. Automatize processos, otimize operações e crie vantagens competitivas sustentáveis através da transformação digital inteligente.</p>
                 <div class="cta-buttons">
