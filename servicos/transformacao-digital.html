@@ -71,6 +71,32 @@
             100% { transform: translate(50px, 50px); }
         }
 
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+
         /* Header */
         header {
             position: fixed;
@@ -82,6 +108,11 @@
             border-bottom: 1px solid rgba(64, 224, 208, 0.2);
             z-index: 1000;
             transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            padding: 0.5rem 0;
         }
 
         .container {
@@ -98,43 +129,30 @@
             align-items: center;
         }
 
-        /* Logo SignaProd */
-        .logo-signaprod {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
-            color: var(--primary);
-            transition: all 0.3s ease;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .logo-signaprod:hover {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 5px 15px rgba(64, 224, 208, 0.5));
-        }
-
-        .logo-image {
-            height: 60px;
-            width: auto;
-            border-radius: 8px;
-            filter: drop-shadow(0 2px 8px rgba(64, 224, 208, 0.2));
-            transition: all 0.3s ease;
-        }
-
-        /* Navigation */
         .nav-links {
             display: flex;
-            gap: 2.5rem;
-            align-items: center;
+            list-style: none;
+            gap: 2rem;
         }
 
         .nav-links a {
-            color: var(--gray);
+            color: var(--light);
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
             position: relative;
-            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
         .nav-links a::after {
@@ -148,92 +166,468 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        /* Service Detail Styles */
-        .service-detail {
-            padding: 120px 0 80px;
-            min-height: 100vh;
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
-        
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .back-button:hover {
-            transform: translateX(-5px);
-        }
-        
-        .service-hero {
+
+        /* Common Section Styles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 4rem;
-        }
-        
-        .service-hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1rem;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 800;
+            background-clip: text;
         }
-        
-        .service-content {
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Process Section */
+        .process {
+            padding: 5rem 0;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .process-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
-        
-        .features-list {
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(64, 224, 208, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .process-step:hover::before {
+            left: 100%;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .process-step p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Technologies Section */
+        .technologies {
+            padding: 5rem 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .tech-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tech-list {
             list-style: none;
+            color: var(--gray);
         }
-        
-        .features-list li {
+
+        .tech-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(64, 224, 208, 0.1);
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .service-selector {
             display: flex;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--gray);
-        }
-        
-        .features-list i {
-            color: var(--primary);
-            width: 20px;
-        }
-
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .service-content p {
-            color: var(--gray);
+        .service-selector:hover {
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Service Popup */
+        .service-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .popup-content {
+            background: var(--dark);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 1.5rem;
-            line-height: 1.8;
         }
-        
-        @media (max-width: 768px) {
-            .service-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
 
+        .popup-title {
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .service-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .service-option {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .service-option:hover {
+            border-color: var(--primary);
+            background: rgba(64, 224, 208, 0.1);
+        }
+
+        .service-option.selected {
+            border-color: var(--primary);
+            background: rgba(64, 224, 208, 0.2);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .process-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
             }
         }
     </style>
@@ -241,94 +635,477 @@
 <body>
     <!-- Background Elements -->
     <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
 
     <!-- Header -->
     <header id="header">
         <div class="container">
             <nav>
-                <a href="../index.html" class="logo-signaprod">
-                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd" class="logo-image">
-                </a>
-                
-                <div class="nav-links">
-                    <a href="../index.html#home">Home</a>
-                    <a href="../index.html#services">Serviços</a>
-                    <a href="../index.html#contact">Contato</a>
-                </div>
+                <div class="logo">SignaProd</div>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../index.html#servicos">Serviços</a></li>
+                    <li><a href="../index.html#sobre">Sobre</a></li>
+                    <li><a href="../index.html#contato">Contato</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Conteúdo da Subpágina -->
-    <section class="service-detail">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <a href="../index.html#services" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Voltar aos Serviços
-            </a>
-            
-            <div class="service-hero">
-                <h1>Revolucione Seu Negócio com Inteligência Artificial</h1>
-                <p class="intro-impact">Implementamos IA de forma estratégica para automatizar processos, prever tendências e criar experiências excepcionais.</p>
-            </div>
-            
-            <div class="service-content">
-                <div>
-                    <h3>Nossa Abordagem</h3>
-                    <p>Implementamos estratégias de transformação digital que integram inteligência artificial para automatizar processos, melhorar a tomada de decisões e impulsionar a inovação em sua empresa.</p>
-                    
-                    <h3>Metodologia</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check"></i> Diagnóstico digital atual</li>
-                        <li><i class="fas fa-check"></i> Mapeamento de oportunidades IA</li>
-                        <li><i class="fas fa-check"></i> Estratégia de implementação</li>
-                        <li><i class="fas fa-check"></i> Desenvolvimento de soluções</li>
-                        <li><i class="fas fa-check"></i> Treinamento de equipes</li>
-                        <li><i class="fas fa-check"></i> Monitoramento e otimização</li>
-                    </ul>
+            <div class="hero-content">
+                <h1>Transformação Digital com IA</h1>
+                <p>Revolucione sua empresa com soluções de inteligência artificial. Automatize processos, otimize operações e crie vantagens competitivas sustentáveis através da transformação digital inteligente.</p>
+                <div class="cta-buttons">
+                    <a href="#contato" class="btn btn-primary">Iniciar Transformação</a>
+                    <a href="#processo" class="btn btn-secondary">Ver Metodologia</a>
                 </div>
                 
-                <div>
-                    <h3>Soluções de IA</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-cogs"></i> Automação inteligente de processos</li>
-                        <li><i class="fas fa-chart-line"></i> Análise preditiva e prescritiva</li>
-                        <li><i class="fas fa-robot"></i> Chatbots e assistentes virtuais</li>
-                        <li><i class="fas fa-eye"></i> Computer Vision para inspeção e qualidade</li>
-                        <li><i class="fas fa-language"></i> NLP para análise de documentos</li>
-                        <li><i class="fas fa-search"></i> Sistemas de recomendação personalizados</li>
-                    </ul>
-                    <h3>Jornada de Implementação</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-clipboard-check"></i> Assessment de maturidade digital</li>
-                        <li><i class="fas fa-lightbulb"></i> Identificação de oportunidades de IA</li>
-                        <li><i class="fas fa-flask"></i> Prova de conceito (PoC)</li>
-                        <li><i class="fas fa-code"></i> Desenvolvimento e integração</li>
-                        <li><i class="fas fa-chalkboard-teacher"></i> Treinamento e capacitação</li>
-                        <li><i class="fas fa-sync"></i> Monitoramento e otimização</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3>Casos de Sucesso</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-percentage"></i> 70% de redução em tarefas manuais</li>
-                        <li><i class="fas fa-arrow-up"></i> 45% de aumento em conversão</li>
-                        <li><i class="fas fa-coins"></i> ROI em menos de 6 meses</li>
-                    </ul>
-                    <h3>Diferenciais</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-brain"></i> Especialistas em IA aplicada ao negócio</li>
-                        <li><i class="fas fa-rocket"></i> Metodologia ágil e validada</li>
-                        <li><i class="fas fa-chart-pie"></i> Foco em resultados mensuráveis</li>
-                        <li><i class="fas fa-eye"></i> Transparência total no processo</li>
-                    </ul>
-                    <div class="diagram-suggestion">
-                        <img src="https://cdn.pixabay.com/photo/2017/08/10/03/47/artificial-intelligence-2618717_1280.jpg" alt="Transformação Digital com IA" style="width:100%;border-radius:12px;margin-top:1.5rem;box-shadow:0 4px 24px rgba(64,224,208,0.15);">
-                        <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;text-align:center;">Exemplo ilustrativo: Jornada de transformação digital com IA</p>
-                    </div>
+                <!-- Digital Transformation Diagram -->
+                <div class="transformation-diagram">
+                    <svg width="600" height="400" viewBox="0 0 600 400" style="max-width: 100%; height: auto;">
+                        <!-- Background -->
+                        <defs>
+                            <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#40E0D0;stop-opacity:0.1" />
+                                <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:0.1" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/> 
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Central Hub - AI Core -->
+                        <circle cx="300" cy="200" r="60" fill="url(#bgGradient)" stroke="#40E0D0" stroke-width="3" filter="url(#glow)"/>
+                        <text x="300" y="195" text-anchor="middle" fill="#40E0D0" font-size="14" font-weight="bold">IA CORE</text>
+                        <text x="300" y="210" text-anchor="middle" fill="#40E0D0" font-size="10">Inteligência</text>
+                        <text x="300" y="225" text-anchor="middle" fill="#40E0D0" font-size="10">Artificial</text>
+                        
+                        <!-- Process Automation -->
+                        <rect x="80" y="80" width="100" height="60" rx="10" fill="url(#bgGradient)" stroke="#00CED1" stroke-width="2" filter="url(#glow)"/>
+                        <text x="130" y="100" text-anchor="middle" fill="#00CED1" font-size="11" font-weight="bold">AUTOMAÇÃO</text>
+                        <text x="130" y="115" text-anchor="middle" fill="#00CED1" font-size="9">de Processos</text>
+                        <text x="130" y="130" text-anchor="middle" fill="#00CED1" font-size="9">RPA + IA</text>
+                        
+                        <!-- Data Analytics -->
+                        <rect x="420" y="80" width="100" height="60" rx="10" fill="url(#bgGradient)" stroke="#00FFFF" stroke-width="2" filter="url(#glow)"/>
+                        <text x="470" y="100" text-anchor="middle" fill="#00FFFF" font-size="11" font-weight="bold">ANALYTICS</text>
+                        <text x="470" y="115" text-anchor="middle" fill="#00FFFF" font-size="9">Big Data</text>
+                        <text x="470" y="130" text-anchor="middle" fill="#00FFFF" font-size="9">Machine Learning</text>
+                        
+                        <!-- Customer Experience -->
+                        <rect x="80" y="260" width="100" height="60" rx="10" fill="url(#bgGradient)" stroke="#2FB5A7" stroke-width="2" filter="url(#glow)"/>
+                        <text x="130" y="280" text-anchor="middle" fill="#2FB5A7" font-size="11" font-weight="bold">EXPERIÊNCIA</text>
+                        <text x="130" y="295" text-anchor="middle" fill="#2FB5A7" font-size="9">do Cliente</text>
+                        <text x="130" y="310" text-anchor="middle" fill="#2FB5A7" font-size="9">Chatbots + CRM</text>
+                        
+                        <!-- Operations Optimization -->
+                        <rect x="420" y="260" width="100" height="60" rx="10" fill="url(#bgGradient)" stroke="#40E0D0" stroke-width="2" filter="url(#glow)"/>
+                        <text x="470" y="280" text-anchor="middle" fill="#40E0D0" font-size="11" font-weight="bold">OPERAÇÕES</text>
+                        <text x="470" y="295" text-anchor="middle" fill="#40E0D0" font-size="9">Otimização</text>
+                        <text x="470" y="310" text-anchor="middle" fill="#40E0D0" font-size="9">IoT + Predição</text>
+                        
+                        <!-- Arrows connecting to center -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#40E0D0" />
+                            </marker>
+                        </defs>
+                        
+                        <!-- Automation to Core -->
+                        <line x1="180" y1="110" x2="240" y2="170" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)">
+                            <animate attributeName="stroke-dasharray" values="0,8;8,0;0,8" dur="2s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Analytics to Core -->
+                        <line x1="420" y1="110" x2="360" y2="170" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)">
+                            <animate attributeName="stroke-dasharray" values="0,8;8,0;0,8" dur="2.5s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Customer Experience to Core -->
+                        <line x1="180" y1="290" x2="240" y2="230" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)">
+                            <animate attributeName="stroke-dasharray" values="0,8;8,0;0,8" dur="3s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Operations to Core -->
+                        <line x1="420" y1="290" x2="360" y2="230" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)">
+                            <animate attributeName="stroke-dasharray" values="0,8;8,0;0,8" dur="2.2s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Bidirectional arrows -->
+                        <line x1="240" y1="170" x2="180" y2="110" stroke="#40E0D0" stroke-width="1" stroke-dasharray="3,3" opacity="0.6">
+                            <animate attributeName="stroke-dasharray" values="3,3;6,0;3,3" dur="3s" repeatCount="indefinite"/>
+                        </line>
+                        
+                        <!-- Title -->
+                        <text x="300" y="30" text-anchor="middle" fill="#40E0D0" font-size="16" font-weight="bold">Ecossistema de Transformação Digital</text>
+                        
+                        <!-- Benefits -->
+                        <text x="300" y="360" text-anchor="middle" fill="#00CED1" font-size="12" font-weight="bold">Resultados da Transformação</text>
+                        <text x="150" y="380" text-anchor="middle" fill="#00CED1" font-size="10">• Eficiência +40%</text>
+                        <text x="300" y="380" text-anchor="middle" fill="#00CED1" font-size="10">• Custos -30%</text>
+                        <text x="450" y="380" text-anchor="middle" fill="#00CED1" font-size="10">• ROI +200%</text>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Process Section -->
+    <section class="process" id="processo">
+        <div class="container">
+            <h2 class="section-title fade-in">Metodologia de Transformação Digital</h2>
+            <p class="section-subtitle fade-in">Processo estruturado para implementar IA e tecnologias digitais de forma estratégica e sustentável</p>
+            
+            <div class="process-grid">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Diagnóstico Digital</h3>
+                    <p>Avaliamos a maturidade digital atual, identificamos oportunidades de melhoria e definimos objetivos estratégicos para a transformação.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Estratégia & Roadmap</h3>
+                    <p>Desenvolvemos um plano detalhado de transformação, priorizando iniciativas por impacto e viabilidade, com cronograma e métricas.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Implementação Ágil</h3>
+                    <p>Executamos projetos em sprints, implementando soluções de IA, automação e analytics com metodologia ágil e entregas incrementais.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Capacitação & Cultura</h3>
+                    <p>Treinamos equipes, desenvolvemos competências digitais e promovemos mudança cultural para adoção das novas tecnologias.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">5</div>
+                    <h3>Monitoramento & KPIs</h3>
+                    <p>Estabelecemos dashboards de acompanhamento, métricas de performance e processos de monitoramento contínuo dos resultados.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">6</div>
+                    <h3>Evolução Contínua</h3>
+                    <p>Mantemos ciclos de melhoria contínua, atualizações tecnológicas e expansão das capacidades digitais da organização.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies" id="tecnologias">
+        <div class="container">
+            <h2 class="section-title fade-in">Stack de Transformação Digital</h2>
+            <p class="section-subtitle fade-in">Tecnologias e soluções para acelerar sua jornada de transformação digital</p>
+            
+            <div class="tech-grid">
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Automação & RPA</h3>
+                    <ul class="tech-list">
+                        <li>UiPath / Automation Anywhere</li>
+                        <li>Microsoft Power Automate</li>
+                        <li>Zapier / Make (Integromat)</li>
+                        <li>Custom Automation Scripts</li>
+                        <li>Workflow Orchestration</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Analytics & BI</h3>
+                    <ul class="tech-list">
+                        <li>Power BI / Tableau</li>
+                        <li>Google Analytics 4</li>
+                        <li>Apache Spark / Hadoop</li>
+                        <li>Elasticsearch / Kibana</li>
+                        <li>Custom Dashboards</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud & Infrastructure</h3>
+                    <ul class="tech-list">
+                        <li>AWS / Azure / Google Cloud</li>
+                        <li>Kubernetes / Docker</li>
+                        <li>Serverless Computing</li>
+                        <li>Microservices Architecture</li>
+                        <li>DevOps & CI/CD</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Customer Experience</h3>
+                    <ul class="tech-list">
+                        <li>CRM Integration</li>
+                        <li>Chatbots & Virtual Assistants</li>
+                        <li>Personalization Engines</li>
+                        <li>Omnichannel Platforms</li>
+                        <li>Customer Journey Analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <h2 class="section-title fade-in">Vamos Transformar Sua Empresa</h2>
+            <p class="section-subtitle fade-in">Conte-nos sobre seus desafios e objetivos para desenvolvermos uma estratégia de transformação digital personalizada</p>
+            
+            <form class="contact-form fade-in" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nome Completo *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999">
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Empresa *</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="service">Área de Transformação *</label>
+                    <div class="service-selector" onclick="openServicePopup()">
+                        <span id="selectedService">Selecione a área de foco</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <input type="hidden" id="service" name="service" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Desafios e Objetivos *</label>
+                    <textarea id="message" name="message" placeholder="Descreva os principais desafios da sua empresa, objetivos de transformação digital, processos que precisam ser otimizados e resultados esperados..." required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-rocket"></i> Iniciar Transformação
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Service Selection Popup -->
+    <div class="service-popup" id="servicePopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3 class="popup-title">Selecione a Área de Transformação</h3>
+                <button class="close-popup" onclick="closeServicePopup()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="service-options">
+                <div class="service-option" onclick="selectService('Automação de Processos')">
+                    <h4>Automação de Processos</h4>
+                    <p>RPA, workflows automatizados e otimização operacional</p>
+                </div>
+                <div class="service-option" onclick="selectService('Analytics & BI')">
+                    <h4>Analytics & BI</h4>
+                    <p>Business Intelligence, dashboards e análise de dados</p>
+                </div>
+                <div class="service-option" onclick="selectService('Customer Experience')">
+                    <h4>Customer Experience</h4>
+                    <p>CRM, chatbots e jornada do cliente digital</p>
+                </div>
+                <div class="service-option" onclick="selectService('Cloud Migration')">
+                    <h4>Cloud Migration</h4>
+                    <p>Migração para nuvem e modernização de infraestrutura</p>
+                </div>
+                <div class="service-option" onclick="selectService('E-commerce Digital')">
+                    <h4>E-commerce Digital</h4>
+                    <p>Plataformas de vendas online e marketplace</p>
+                </div>
+                <div class="service-option" onclick="selectService('IoT & Indústria 4.0')">
+                    <h4>IoT & Indústria 4.0</h4>
+                    <p>Internet das Coisas e manufatura inteligente</p>
+                </div>
+                <div class="service-option" onclick="selectService('Segurança Digital')">
+                    <h4>Segurança Digital</h4>
+                    <p>Cybersecurity, compliance e proteção de dados</p>
+                </div>
+                <div class="service-option" onclick="selectService('Transformação Completa')">
+                    <h4>Transformação Completa</h4>
+                    <p>Estratégia holística de transformação digital</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Generate floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Service popup functions
+        function openServicePopup() {
+            document.getElementById('servicePopup').style.display = 'flex';
+        }
+
+        function closeServicePopup() {
+            document.getElementById('servicePopup').style.display = 'none';
+        }
+
+        function selectService(service) {
+            document.getElementById('selectedService').textContent = service;
+            document.getElementById('service').value = service;
+            closeServicePopup();
+        }
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Simulate form submission
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Show success message
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
+                submitBtn.style.background = '#10B981';
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    this.reset();
+                    document.getElementById('selectedService').textContent = 'Selecione a área de foco';
+                    document.getElementById('service').value = '';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+                
+            } catch (error) {
+                // Show error message
+                submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Erro ao Enviar';
+                submitBtn.style.background = '#EF4444';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            }
+        });
+
+        // Phone mask
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 7) {
+                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize particles
+        createParticles();
+    </script>
 </body>
 </html>

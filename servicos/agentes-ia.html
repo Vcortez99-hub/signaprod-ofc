@@ -71,6 +71,44 @@
             100% { transform: translate(50px, 50px); }
         }
 
+        /* Particles Animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: particle-float 15s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
         /* Header */
         header {
             position: fixed;
@@ -82,6 +120,12 @@
             border-bottom: 1px solid rgba(64, 224, 208, 0.2);
             z-index: 1000;
             transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.75rem 0;
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .container {
@@ -156,12 +200,70 @@
             width: 100%;
         }
 
-        /* Service Detail Styles */
-        .service-detail {
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        /* Common Section Styles */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            font-size: 1.125rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
             padding: 120px 0 80px;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        @keyframes rotate-slow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -171,76 +273,473 @@
             margin-bottom: 2rem;
             transition: all 0.3s ease;
         }
-        
+
         .back-button:hover {
             transform: translateX(-5px);
         }
-        
-        .service-hero {
-            text-align: center;
-            margin-bottom: 4rem;
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInLeft 1s ease;
         }
-        
-        .service-hero h1 {
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-            font-weight: 800;
-        }
-        
-        .service-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        
-        .features-list {
-            list-style: none;
-        }
-        
-        .features-list li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            color: var(--gray);
-        }
-        
-        .features-list i {
-            color: var(--primary);
-            width: 20px;
+            letter-spacing: -1px;
         }
 
-        .service-content h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-content p {
+        .hero p {
+            font-size: 1.25rem;
             color: var(--gray);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             line-height: 1.8;
         }
-        
-        @media (max-width: 768px) {
-            .service-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
 
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(64, 224, 208, 0.5);
+        }
+
+        /* Hero Diagram */
+        .hero-diagram {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-diagram svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(64, 224, 208, 0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        /* Process Section */
+        .process {
+            background: rgba(10, 14, 39, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process-step::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+        }
+
+        .process-step:hover::before {
+            opacity: 1;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(64, 224, 208, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: scale(1.1);
+        }
+
+        .process-step h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .process-step p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .process-step:hover h3,
+        .process-step:hover p {
+            color: var(--dark);
+        }
+
+        /* Technologies Section */
+        .technologies {
+            position: relative;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .tech-category {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 280px;
+        }
+
+        .tech-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+        }
+
+        .tech-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .tech-category h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .tech-list {
+            list-style: none;
+        }
+
+        .tech-list li {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid rgba(64, 224, 208, 0.1);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.05) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(64, 224, 208, 0.05);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(64, 224, 208, 0.1);
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(148, 163, 184, 0.5);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.4);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Service Popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: rgba(10, 14, 39, 0.98);
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1002;
+        }
+
+        .service-popup.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .service-option {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(64, 224, 208, 0.1);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--light);
+            text-align: center;
+        }
+
+        .service-option:hover {
+            background: var(--gradient-primary);
+            color: var(--dark);
+            transform: translateX(10px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin-bottom: 3rem;
+            }
+
+            .hero-diagram svg {
+                max-width: 300px;
+            }
+
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
     <!-- Background Elements -->
     <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
 
     <!-- Header -->
     <header id="header">
@@ -253,71 +752,444 @@
                 <div class="nav-links">
                     <a href="../index.html#home">Home</a>
                     <a href="../index.html#services">Serviços</a>
-                    <a href="../index.html#contact">Contato</a>
+                    <a href="#contact">Contato</a>
                 </div>
+
+                <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
             </nav>
         </div>
     </header>
 
-    <!-- Conteúdo da Subpágina -->
-    <section class="service-detail">
-        <div class="container">
-            <a href="../index.html#services" class="back-button">
-                <i class="fas fa-arrow-left"></i>
-                Voltar aos Serviços
-            </a>
-            
-            <div class="service-hero">
-                <h1>Agentes Inteligentes Que Trabalham 24/7 Para Você</h1>
-                <p class="intro-impact">Desenvolva uma força de trabalho digital com agentes de IA customizados que executam tarefas complexas autonomamente.</p>
-                <p>Desenvolvemos agentes de IA personalizados que automatizam fluxos de trabalho e processos específicos da sua empresa, proporcionando maior eficiência e precisão nas operações.</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container" style="display: flex; align-items: center; gap: 4rem;">
+            <div class="hero-content">
+                <a href="../index.html#services" class="back-button">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar aos Serviços
+                </a>
                 
-                <h3>Processo de Desenvolvimento</h3>
-                <ul class="features-list">
-                    <li><i class="fas fa-check"></i> Análise de processos atuais</li>
-                    <li><i class="fas fa-check"></i> Definição de objetivos do agente</li>
-                    <li><i class="fas fa-check"></i> Design da arquitetura IA</li>
-                    <li><i class="fas fa-check"></i> Treinamento e calibração</li>
-                    <li><i class="fas fa-check"></i> Testes e validação</li>
-                    <li><i class="fas fa-check"></i> Implementação e monitoramento</li>
-                </ul>
+                <h1>Criação de Agentes de IA Personalizados</h1>
+                <p>Desenvolvemos agentes de inteligência artificial sob medida para automatizar tarefas, atender clientes e otimizar processos específicos do seu negócio.</p>
+                
+                <a href="#contact" class="cta-button">
+                    Solicitar Demonstração
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="hero-diagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+                    <!-- AI Agent Diagram -->
+                    <defs>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#40E0D0;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:1" />
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge> 
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Central AI Brain -->
+                    <circle cx="200" cy="150" r="50" fill="url(#grad1)" filter="url(#glow)"/>
+                    <text x="200" y="160" text-anchor="middle" fill="#0a0e27" font-size="24" font-weight="bold">🤖</text>
+                    <text x="200" y="190" text-anchor="middle" fill="#40E0D0" font-size="12" font-weight="bold">Agente IA</text>
+                    
+                    <!-- Input Sources -->
+                    <circle cx="80" cy="80" r="25" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="80" y="87" text-anchor="middle" fill="#40E0D0" font-size="16">💬</text>
+                    <text x="80" y="110" text-anchor="middle" fill="#40E0D0" font-size="10">Chat</text>
+                    
+                    <circle cx="80" cy="220" r="25" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="80" y="227" text-anchor="middle" fill="#40E0D0" font-size="16">📧</text>
+                    <text x="80" y="250" text-anchor="middle" fill="#40E0D0" font-size="10">Email</text>
+                    
+                    <!-- Output Actions -->
+                    <circle cx="320" cy="80" r="25" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="320" y="87" text-anchor="middle" fill="#40E0D0" font-size="16">📊</text>
+                    <text x="320" y="110" text-anchor="middle" fill="#40E0D0" font-size="10">Relatórios</text>
+                    
+                    <circle cx="320" cy="220" r="25" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="320" y="227" text-anchor="middle" fill="#40E0D0" font-size="16">⚡</text>
+                    <text x="320" y="250" text-anchor="middle" fill="#40E0D0" font-size="10">Automação</text>
+                    
+                    <!-- Knowledge Base -->
+                    <rect x="170" y="40" width="60" height="30" rx="15" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="200" y="50" text-anchor="middle" fill="#40E0D0" font-size="12">📚</text>
+                    <text x="200" y="62" text-anchor="middle" fill="#40E0D0" font-size="8">Base de</text>
+                    <text x="200" y="72" text-anchor="middle" fill="#40E0D0" font-size="8">Conhecimento</text>
+                    
+                    <!-- Learning Module -->
+                    <rect x="170" y="230" width="60" height="30" rx="15" fill="rgba(64, 224, 208, 0.3)" stroke="#40E0D0" stroke-width="2"/>
+                    <text x="200" y="240" text-anchor="middle" fill="#40E0D0" font-size="12">🧠</text>
+                    <text x="200" y="252" text-anchor="middle" fill="#40E0D0" font-size="8">Aprendizado</text>
+                    <text x="200" y="262" text-anchor="middle" fill="#40E0D0" font-size="8">Contínuo</text>
+                    
+                    <!-- Connecting Lines -->
+                    <line x1="105" y1="80" x2="150" y2="130" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="105" y1="220" x2="150" y2="170" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="250" y1="130" x2="295" y2="80" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="250" y1="170" x2="295" y2="220" stroke="#40E0D0" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="200" y1="100" x2="200" y2="70" stroke="#40E0D0" stroke-width="2" stroke-dasharray="3,3"/>
+                    <line x1="200" y1="200" x2="200" y2="230" stroke="#40E0D0" stroke-width="2" stroke-dasharray="3,3"/>
+                    
+                    <!-- Arrow marker -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#40E0D0"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Floating data particles -->
+                    <circle cx="120" cy="120" r="2" fill="#40E0D0" opacity="0.8">
+                        <animate attributeName="cx" values="120;180;120" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="280" cy="180" r="2" fill="#00FFFF" opacity="0.8">
+                        <animate attributeName="cx" values="280;220;280" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="150" cy="50" r="1.5" fill="#40E0D0" opacity="0.6">
+                        <animate attributeName="cy" values="50;100;50" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Processo de Desenvolvimento</h2>
+                <p>Metodologia estruturada para criar agentes de IA que atendem perfeitamente às suas necessidades</p>
             </div>
             
-            <div class="service-content">
-                <div>
-                    <h3>Tipos de Agentes</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-headset"></i> Agentes de atendimento ao cliente</li>
-                        <li><i class="fas fa-chart-bar"></i> Agentes de análise de dados</li>
-                        <li><i class="fas fa-bell"></i> Agentes de monitoramento e alertas</li>
-                        <li><i class="fas fa-file-alt"></i> Agentes de processamento de documentos</li>
-                        <li><i class="fas fa-user-tie"></i> Agentes de vendas e qualificação</li>
-                        <li><i class="fas fa-tools"></i> Agentes de suporte técnico</li>
-                    </ul>
-                    <h3>Tecnologias Utilizadas</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-brain"></i> GPT-4 e modelos de linguagem avançados</li>
-                        <li><i class="fas fa-project-diagram"></i> Frameworks de orquestração (LangChain, AutoGen)</li>
-                        <li><i class="fas fa-plug"></i> Integração com APIs e sistemas legados</li>
-                        <li><i class="fas fa-database"></i> Memória persistente e aprendizado contínuo</li>
-                        <li><i class="fas fa-shield-alt"></i> Segurança e compliance integrados</li>
-                    </ul>
+            <div class="process-grid">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Análise de Requisitos</h3>
+                    <p>Identificamos as tarefas específicas, fluxos de trabalho e objetivos que o agente de IA deve atender no seu negócio.</p>
                 </div>
-                <div>
-                    <h3>Benefícios Mensuráveis</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-clock"></i> Operação 24/7 sem pausas</li>
-                        <li><i class="fas fa-expand-arrows-alt"></i> Escalabilidade instantânea</li>
-                        <li><i class="fas fa-percentage"></i> Redução de 80% em custos operacionais</li>
-                        <li><i class="fas fa-check-double"></i> Precisão e consistência garantidas</li>
-                    </ul>
-                    <div class="diagram-suggestion">
-                        <img src="https://cdn.pixabay.com/photo/2017/08/10/03/47/artificial-intelligence-2618717_1280.jpg" alt="Agentes de IA" style="width:100%;border-radius:12px;margin-top:1.5rem;box-shadow:0 4px 24px rgba(64,224,208,0.15);">
-                        <p style="color:var(--gray);font-size:0.95rem;margin-top:0.5rem;text-align:center;">Exemplo ilustrativo: Rede de agentes inteligentes atuando em diferentes áreas</p>
-                    </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Design da Personalidade</h3>
+                    <p>Definimos o tom, estilo de comunicação e comportamentos que melhor representam sua marca e atendem seu público.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Treinamento Especializado</h3>
+                    <p>Treinamos o agente com dados específicos do seu domínio, criando uma base de conhecimento personalizada e relevante.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Integração de Sistemas</h3>
+                    <p>Conectamos o agente aos seus sistemas existentes (CRM, ERP, bases de dados) para acesso a informações em tempo real.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">5</div>
+                    <h3>Testes e Refinamento</h3>
+                    <p>Realizamos testes extensivos, coletamos feedback e refinamos o comportamento do agente para máxima eficiência.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">6</div>
+                    <h3>Deploy e Monitoramento</h3>
+                    <p>Implementamos o agente em produção e estabelecemos monitoramento contínuo para otimização e melhorias.</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tecnologias de IA Utilizadas</h2>
+                <p>Utilizamos as mais avançadas tecnologias de inteligência artificial para criar agentes poderosos e eficientes</p>
+            </div>
+            
+            <div class="tech-grid">
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Modelos de Linguagem</h3>
+                    <ul class="tech-list">
+                        <li>GPT-4 & Claude</li>
+                        <li>LLaMA & Mistral</li>
+                        <li>Modelos Fine-tuned</li>
+                        <li>Embeddings Personalizados</li>
+                        <li>RAG (Retrieval Augmented Generation)</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Frameworks & Ferramentas</h3>
+                    <ul class="tech-list">
+                        <li>LangChain & LlamaIndex</li>
+                        <li>Hugging Face Transformers</li>
+                        <li>OpenAI API & Anthropic</li>
+                        <li>Vector Databases (Pinecone, Weaviate)</li>
+                        <li>MLflow & Weights & Biases</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Interfaces de Conversação</h3>
+                    <ul class="tech-list">
+                        <li>Chatbots Web & Mobile</li>
+                        <li>WhatsApp & Telegram</li>
+                        <li>Slack & Microsoft Teams</li>
+                        <li>Voice Assistants</li>
+                        <li>APIs Personalizadas</li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category fade-in">
+                    <div class="tech-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Processamento de Dados</h3>
+                    <ul class="tech-list">
+                        <li>Natural Language Processing</li>
+                        <li>Document Processing</li>
+                        <li>Knowledge Graphs</li>
+                        <li>Real-time Analytics</li>
+                        <li>Multi-modal AI (Texto, Voz, Imagem)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Solicite uma Demonstração</h2>
+                <p>Vamos criar um agente de IA personalizado para revolucionar seu atendimento e processos</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xyzjnkor" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(11) 99999-9999" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectedService">Serviço</label>
+                            <input type="text" id="selectedService" name="service" value="Criação de Agentes de IA" readonly style="cursor: pointer;" onclick="openServicePopup()" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Descreva o agente de IA que você precisa</label>
+                            <textarea id="message" name="message" placeholder="Conte-nos sobre as tarefas que o agente deve realizar, tipo de atendimento, integrações necessárias..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">Solicitar Demonstração</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Selection Popup -->
+    <div class="overlay" id="serviceOverlay" onclick="closeServicePopup()"></div>
+    <div class="service-popup" id="servicePopup">
+        <div class="service-popup-content">
+            <div class="service-option" onclick="selectService('Criação de Agentes de IA')">Criação de Agentes de IA</div>
+            <div class="service-option" onclick="selectService('Otimização de Processos')">Otimização de Processos</div>
+            <div class="service-option" onclick="selectService('Desenvolvimento de Produtos')">Desenvolvimento de Produtos</div>
+            <div class="service-option" onclick="selectService('Alocação de Profissionais de TI')">Alocação de Profissionais de TI</div>
+            <div class="service-option" onclick="selectService('Transformação Digital com IA')">Transformação Digital com IA</div>
+            <div class="service-option" onclick="selectService('Criação de RAG Personalizado')">Criação de RAG Personalizado</div>
+            <div class="service-option" onclick="selectService('Desenvolvimento de MVP')">Desenvolvimento de MVP</div>
+        </div>
+    </div>
+
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Particles Generation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Service Popup Functions
+        function openServicePopup() {
+            document.getElementById('servicePopup').classList.add('active');
+            document.getElementById('serviceOverlay').classList.add('active');
+        }
+
+        function closeServicePopup() {
+            document.getElementById('servicePopup').classList.remove('active');
+            document.getElementById('serviceOverlay').classList.remove('active');
+        }
+
+        function selectService(service) {
+            document.getElementById('selectedService').value = service;
+            closeServicePopup();
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Validação adicional
+            const email = form.email.value;
+            const phone = form.phone.value;
+            
+            // Validação de email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Por favor, insira um email válido.');
+                return;
+            }
+            
+            // Mostrar loading
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(form);
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Sucesso
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
+                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                    
+                    setTimeout(() => {
+                        alert('Solicitação enviada com sucesso! Nossa equipe entrará em contato em breve para agendar uma demonstração do seu agente de IA personalizado.');
+                        form.reset();
+                        document.getElementById('selectedService').value = 'Criação de Agentes de IA';
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                        window.location.href = '../index.html#home';
+                    }, 2000);
+                } else {
+                    throw new Error('Erro ao enviar');
+                }
+            })
+            .catch(error => {
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> Erro ao Enviar';
+                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                
+                setTimeout(() => {
+                    alert('Erro ao enviar o formulário. Por favor, tente novamente ou entre em contato por email: comercial@signaprod.com');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        });
+
+        // Phone Mask
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 10) {
+                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
+                } else {
+                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+                }
+            }
+            e.target.value = value;
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Mobile Menu Toggle (if needed)
+        function toggleMobileMenu() {
+            // Add mobile menu functionality if needed
+        }
+    </script>
 </body>
 </html>
