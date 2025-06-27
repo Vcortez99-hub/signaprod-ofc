@@ -228,26 +228,38 @@
         }
 
         .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
+            flex: 1;
+            max-width: 600px;
+            animation: fadeInLeft 1s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
             margin-bottom: 1.5rem;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
+            letter-spacing: -1px;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--gray);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .cta-buttons {
