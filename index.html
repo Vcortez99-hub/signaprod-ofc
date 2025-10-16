@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignaProd - Soluções Tecnológicas e Transformação Digital</title>
+    <title>SignaProd - Consultoria em Inteligência Artificial e Transformação Digital</title>
+    <meta name="description" content="Consultoria em Inteligência Artificial para empresas. Transformação digital, automação e agentes de IA. +10 empresas atendidas, 40% mais eficiência.">
+    <meta name="keywords" content="consultoria IA, inteligência artificial, automação, transformação digital, agentes IA, chatbots, MVP">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg">
+    
     <style>
         * {
             margin: 0;
@@ -51,7 +56,6 @@
             z-index: 1;
         }
 
-        /* Animated Background Grid */
         .bg-grid {
             position: fixed;
             top: 0;
@@ -71,7 +75,6 @@
             100% { transform: translate(50px, 50px); }
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -104,7 +107,6 @@
             align-items: center;
         }
 
-        /* Logo SignaProd */
         .logo-signaprod {
             display: flex;
             align-items: center;
@@ -119,7 +121,6 @@
             filter: drop-shadow(0 5px 15px rgba(64, 224, 208, 0.5));
         }
 
-        /* Logo da SignaProd */
         .logo-image {
             height: 60px;
             width: auto;
@@ -128,12 +129,6 @@
             transition: all 0.3s ease;
         }
 
-        .logo-signaprod:hover .logo-image {
-            transform: translateY(-1px);
-            filter: drop-shadow(0 4px 12px rgba(64, 224, 208, 0.3));
-        }
-
-        /* Navigation */
         .nav-links {
             display: flex;
             gap: 2.5rem;
@@ -168,7 +163,6 @@
             width: 100%;
         }
 
-        /* Mobile Menu Button */
         .mobile-menu-btn {
             display: none;
             font-size: 1.5rem;
@@ -179,7 +173,6 @@
             padding: 0.5rem;
         }
 
-        /* Mobile Menu */
         .mobile-menu {
             position: fixed;
             top: 0;
@@ -213,105 +206,87 @@
             padding-left: 1rem;
         }
 
-        /* Contact Toggle Button */
-        .contact-toggle {
+        /* WHATSAPP FLOAT BUTTON */
+        .whatsapp-float {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
+            z-index: 998;
+            animation: pulse-whatsapp 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-whatsapp {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .whatsapp-float a {
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.4);
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 2rem;
             transition: all 0.3s ease;
-            z-index: 998;
-            animation: float-button 3s ease-in-out infinite;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes float-button {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .whatsapp-float a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        .contact-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(64, 224, 208, 0.6);
+        .whatsapp-float a:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
-        .contact-toggle i {
-            font-size: 1.5rem;
-            color: var(--dark);
+        .whatsapp-float a:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.7);
         }
 
-        /* Contact Menu */
-        .contact-menu {
-            position: fixed;
-            right: -400px;
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 80px;
             top: 50%;
             transform: translateY(-50%);
-            width: 350px;
             background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(64, 224, 208, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: right 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .contact-menu.active {
-            right: 2rem;
-        }
-
-        .contact-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--gray);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .contact-menu-close:hover {
-            color: var(--primary);
-        }
-
-        .contact-menu h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-menu p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-menu a {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
+            color: var(--light);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
             transition: all 0.3s ease;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        .contact-menu a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.4);
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            right: 85px;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -372,6 +347,43 @@
             line-height: 1.8;
         }
 
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(64, 224, 208, 0.05);
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(64, 224, 208, 0.1);
+            border-color: var(--primary);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
         .cta-button {
             display: inline-flex;
             align-items: center;
@@ -409,7 +421,6 @@
             left: 100%;
         }
 
-        /* Hero Image */
         .hero-image {
             flex: 1;
             display: flex;
@@ -447,7 +458,6 @@
             }
         }
 
-        /* Services Section */
         .services {
             padding: 5rem 0;
             background: rgba(10, 14, 39, 0.5);
@@ -519,7 +529,6 @@
         .service-card:hover {
             transform: translateY(-10px);
             border-color: transparent;
-            cursor: pointer;
         }
 
         .service-link {
@@ -565,9 +574,10 @@
             color: var(--dark);
             transform: scale(1.1);
         }
+
         .service-card:hover h3,
         .service-card:hover p {
-        color: #000000 !important;
+            color: #000000 !important;
         }
 
         .service-card h3 {
@@ -581,7 +591,6 @@
             line-height: 1.7;
         }
 
-        /* Contact Section */
         .contact {
             padding: 5rem 0;
             position: relative;
@@ -695,7 +704,6 @@
             left: 100%;
         }
 
-        /* Service Popup */
         .overlay {
             position: fixed;
             top: 0;
@@ -755,7 +763,6 @@
             transform: translateX(10px);
         }
 
-        /* Particles Animation */
         .particles {
             position: fixed;
             top: 0;
@@ -793,7 +800,6 @@
             }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -816,11 +822,6 @@
                 max-width: 300px;
             }
 
-            .contact-menu {
-                width: calc(100% - 4rem);
-                max-width: 350px;
-            }
-
             .services-grid {
                 grid-template-columns: 1fr;
             }
@@ -828,9 +829,28 @@
             .logo-image {
                 height: 45px;
             }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .whatsapp-float {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .whatsapp-float a {
+                width: 60px;
+                height: 60px;
+                font-size: 1.75rem;
+            }
+
+            .whatsapp-tooltip {
+                display: none;
+            }
         }
 
-        /* Loading State */
         .loading {
             position: fixed;
             top: 0;
@@ -863,32 +883,24 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Glow Effects */
         .glow-text {
             text-shadow: 0 0 20px rgba(64, 224, 208, 0.5);
-        }
-
-        .glow-box {
-            box-shadow: 0 0 30px rgba(64, 224, 208, 0.3);
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading" id="loading">
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Background Elements -->
     <div class="bg-grid"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Header -->
     <header id="header">
         <div class="container">
             <nav>
                 <a href="#home" class="logo-signaprod">
-                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd" class="logo-image">
+                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd - Consultoria IA" class="logo-image">
                 </a>
                 
                 <div class="nav-links">
@@ -902,21 +914,43 @@
         </div>
     </header>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="#home" onclick="toggleMobileMenu()">Início</a>
         <a href="#services" onclick="toggleMobileMenu()">Serviços</a>
         <a href="#contact" onclick="toggleMobileMenu()">Contato</a>
     </div>
 
-    <!-- Hero Section -->
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <div class="whatsapp-float">
+        <span class="whatsapp-tooltip">Fale conosco no WhatsApp!</span>
+        <a href="https://wa.me/5513000000000?text=Olá!%20Vim%20pelo%20site%20da%20SignaProd%20e%20gostaria%20de%20saber%20mais%20sobre%20consultoria%20em%20IA." target="_blank" rel="noopener noreferrer" aria-label="Contato via WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
     <section id="home" class="hero">
         <div class="container" style="display: flex; align-items: center; gap: 4rem;">
             <div class="hero-content">
-                <h1 class="glow-text">Inovação Tecnológica e Transformação Digital</h1>
-                <p>Criamos soluções tecnológicas sob medida que impulsionam negócios para o futuro.</p>
+                <h1 class="glow-text">Consultoria em IA e Transformação Digital</h1>
+                <p>Impulsionamos empresas com soluções tecnológicas sob medida que transformam processos e geram resultados reais.</p>
+                
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">+10</div>
+                        <div class="stat-label">Empresas Atendidas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">Mais Eficiência</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">60%</div>
+                        <div class="stat-label">Tempo Otimizado</div>
+                    </div>
+                </div>
+                
                 <a href="#contact" class="cta-button">
-                    Solicite uma Consultoria
+                    Solicite uma Consultoria Gratuita
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -939,7 +973,6 @@
         </div>
     </section>
 
-    <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
             <div class="section-title">
@@ -952,7 +985,7 @@
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3>Otimização de Processos</h3>
-                    <p>Automatizamos e otimizamos seus processos empresariais, eliminando gargalos e aumentando a eficiência operacional </p>
+                    <p>Automatizamos e otimizamos seus processos empresariais, eliminando gargalos e aumentando a eficiência operacional</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -963,7 +996,7 @@
                         <i class="fas fa-user-plus"></i>
                     </div>
                     <h3>Alocação de Profissionais de TI</h3>
-                    <p>Identificação e alocação dos melhores talentos em tecnologia para sua equipe.</p>
+                    <p>Identificação e alocação dos melhores talentos em tecnologia para sua equipe</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -974,7 +1007,7 @@
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Transformação Digital com IA</h3>
-                    <p>Implementação de estratégias de transformação digital com inteligência artificial.</p>
+                    <p>Implementação de estratégias de transformação digital com inteligência artificial</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -985,7 +1018,7 @@
                         <i class="fas fa-magic"></i>
                     </div>
                     <h3>Criação de Agentes de IA</h3>
-                    <p>Otimização de fluxos de trabalho com agentes de IA personalizados para sua empresa.</p>
+                    <p>Otimização de fluxos de trabalho com agentes de IA personalizados para sua empresa</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -996,7 +1029,7 @@
                         <i class="fas fa-search-plus"></i>
                     </div>
                     <h3>Criação de RAG Personalizado</h3>
-                    <p>Soluções de Retrieval-Augmented Generation para seus documentos e dados específicos.</p>
+                    <p>Soluções de Retrieval-Augmented Generation para seus documentos e dados específicos</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -1007,7 +1040,7 @@
                         <i class="fas fa-stopwatch"></i>
                     </div>
                     <h3>Desenvolvimento de MVP</h3>
-                    <p>Acelere sua validação de mercado com MVPs otimizados e entrega ágil.</p>
+                    <p>Acelere sua validação de mercado com MVPs otimizados e entrega ágil</p>
                     <div class="service-link">
                         <span>Saiba mais</span>
                         <i class="fas fa-arrow-right"></i>
@@ -1017,53 +1050,48 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Contate-nos</h2>
-                <p>Preencha o formulário para solicitar um serviço</p>
+                <h2>Solicite uma Consultoria</h2>
+                <p>Transforme seu negócio com inteligência artificial</p>
             </div>
             <div class="contact-content">
                 <div class="contact-form">
-                    <!-- 
-                        IMPORTANTE: Este formulário usa Formspree
-                        Para configurar seu email:
-                        1. Acesse https://formspree.io
-                        2. Crie uma conta gratuita
-                        3. Crie um novo formulário
-                        4. Substitua 'SEU_EMAIL@gmail.com' pelo seu email real
-                        5. Ou substitua toda a action pelo novo endpoint do Formspree
-                    -->
                     <form id="contactForm" action="https://formspree.io/f/xyzjnkor" method="POST">
                         <div class="form-group">
                             <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" placeholder="Nome Completo" required>
+                            <input type="text" id="name" name="name" placeholder="Seu nome completo" required>
                         </div>
                         <div class="form-group">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="E-mail" required>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
+                            <input type="tel" id="phone" name="phone" placeholder="(11) 98765-4321" required>
                         </div>
                         <div class="form-group">
-                            <label for="selectedService">Serviço</label>
-                            <input type="text" id="selectedService" name="service" placeholder="Selecione um serviço" readonly onclick="openServicePopup()" required style="cursor: pointer;">
+                            <label for="company">Empresa</label>
+                            <input type="text" id="company" name="company" placeholder="Nome da sua empresa" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" placeholder="Mensagem" rows="5" required></textarea>
+                            <label for="selectedService">Serviço de Interesse</label>
+                            <input type="text" id="selectedService" name="service" placeholder="Clique para selecionar" readonly onclick="openServicePopup()" required style="cursor: pointer;">
                         </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">Enviar Solicitação</button>
+                        <div class="form-group">
+                            <label for="message">Conte-nos sobre seu projeto</label>
+                            <textarea id="message" name="message" placeholder="Descreva brevemente o que você precisa..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Enviar Solicitação
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Selection Popup -->
     <div class="overlay" id="serviceOverlay" onclick="closeServicePopup()"></div>
     <div class="service-popup" id="servicePopup">
         <div class="service-popup-content">
@@ -1077,14 +1105,12 @@
     </div>
 
     <script>
-        // Loading Screen
         window.addEventListener('load', function() {
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
             }, 500);
         });
 
-        // Header Scroll Effect
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
@@ -1094,7 +1120,6 @@
             }
         });
 
-        // Smooth Scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1108,7 +1133,6 @@
             });
         });
 
-        // Particles Generation
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 30;
@@ -1125,25 +1149,11 @@
 
         createParticles();
 
-        // Contact Menu Toggle
-        function toggleContactMenu() {
-            const menu = document.getElementById('contactMenu');
-            const overlay = document.getElementById('serviceOverlay');
-            menu.classList.toggle('active');
-            if (menu.classList.contains('active')) {
-                overlay.classList.add('active');
-            } else {
-                overlay.classList.remove('active');
-            }
-        }
-
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
             menu.classList.toggle('active');
         }
 
-        // Service Popup Functions
         function openServicePopup() {
             document.getElementById('servicePopup').classList.add('active');
             document.getElementById('serviceOverlay').classList.add('active');
@@ -1152,8 +1162,6 @@
         function closeServicePopup() {
             document.getElementById('servicePopup').classList.remove('active');
             document.getElementById('serviceOverlay').classList.remove('active');
-            // Also close contact menu if open
-            document.getElementById('contactMenu').classList.remove('active');
         }
 
         function selectService(service) {
@@ -1161,18 +1169,6 @@
             closeServicePopup();
         }
 
-        // Função para rolar suavemente até o contato
-        function scrollToContact() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
-
-        // Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1180,31 +1176,23 @@
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
             
-            // Validação adicional
             const email = form.email.value;
             const phone = form.phone.value;
             
-            // Validação de email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um email válido.');
                 return;
             }
             
-            // Validação de telefone brasileiro
-            const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
+            const phoneRegex = /^\(\d{2}\)\s?\d{4,5}-?\d{4}$/;
             if (!phoneRegex.test(phone)) {
-                alert('Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX');
+                alert('Por favor, insira um telefone válido no formato (11) 98765-4321');
                 return;
             }
             
-            // Mostrar loading
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             submitBtn.disabled = true;
-            
-            // Para Formspree funcionar:
-            // 1. Substitua 'SEU_EMAIL@gmail.com' no action do form pelo seu email real
-            // 2. Ou crie uma conta em formspree.io e use o endpoint fornecido
             
             const formData = new FormData(form);
             
@@ -1217,7 +1205,6 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Sucesso
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
                     submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
                     
@@ -1238,7 +1225,7 @@
                 submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
                 
                 setTimeout(() => {
-                    alert('Erro ao enviar o formulário. Por favor, tente novamente ou entre em contato por email: comercial@signaprod.com');
+                    alert('Erro ao enviar. Tente novamente ou entre em contato via WhatsApp.');
                     submitBtn.innerHTML = originalText;
                     submitBtn.style.background = '';
                     submitBtn.disabled = false;
@@ -1246,7 +1233,6 @@
             });
         });
 
-        // Phone Mask
         const phoneInput = document.getElementById('phone');
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
@@ -1260,7 +1246,6 @@
             e.target.value = value;
         });
 
-        // Intersection Observer for Animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -1275,7 +1260,6 @@
             });
         }, observerOptions);
 
-        // Observe service cards
         document.querySelectorAll('.service-card').forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
@@ -1283,42 +1267,12 @@
             observer.observe(card);
         });
 
-        // Add hover effects
-        document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
-            button.addEventListener('mouseenter', function(e) {
-                const x = e.pageX - this.offsetLeft;
-                const y = e.pageY - this.offsetTop;
-                
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.width = '0';
-                ripple.style.height = '0';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                ripple.style.animation = 'ripple-effect 0.6s ease-out';
-                ripple.style.pointerEvents = 'none';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
+        document.querySelectorAll('.stat-item').forEach((stat, index) => {
+            stat.style.opacity = '0';
+            stat.style.transform = 'translateY(20px)';
+            stat.style.transition = `all 0.6s ease ${index * 0.15}s`;
+            observer.observe(stat);
         });
-
-        // Add ripple animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple-effect {
-                to {
-                    width: 200px;
-                    height: 200px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
 </body>
 </html>
