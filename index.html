@@ -980,70 +980,70 @@
                 <p>Soluções estratégicas para impulsionar sua transformação digital</p>
             </div>
             <div class="services-grid">
-                <div class="service-card" onclick="window.location.href='servicos/otimizacao-de-processos.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Otimização de Processos')">
                     <div class="service-icon">
                         <i class="fas fa-rocket"></i>
                     </div>
                     <h3>Otimização de Processos</h3>
                     <p>Automatizamos e otimizamos seus processos empresariais, eliminando gargalos e aumentando a eficiência operacional</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/alocacao-profissionais.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Alocação de Profissionais de TI')">
                     <div class="service-icon">
                         <i class="fas fa-user-plus"></i>
                     </div>
                     <h3>Alocação de Profissionais de TI</h3>
                     <p>Identificação e alocação dos melhores talentos em tecnologia para sua equipe</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/transformacao-digital.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Transformação Digital com IA')">
                     <div class="service-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Transformação Digital com IA</h3>
                     <p>Implementação de estratégias de transformação digital com inteligência artificial</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/agentes-ia.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Criação de Agentes de IA')">
                     <div class="service-icon">
                         <i class="fas fa-magic"></i>
                     </div>
                     <h3>Criação de Agentes de IA</h3>
                     <p>Otimização de fluxos de trabalho com agentes de IA personalizados para sua empresa</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/rag-personalizado.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Criação de RAG Personalizado')">
                     <div class="service-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                     <h3>Criação de RAG Personalizado</h3>
                     <p>Soluções de Retrieval-Augmented Generation para seus documentos e dados específicos</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/desenvolvimento-mvp.html'">
+                <div class="service-card" onclick="redirectToWhatsApp('Desenvolvimento de MVP')">
                     <div class="service-icon">
                         <i class="fas fa-stopwatch"></i>
                     </div>
                     <h3>Desenvolvimento de MVP</h3>
                     <p>Acelere sua validação de mercado com MVPs otimizados e entrega ágil</p>
                     <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Fale conosco</span>
+                        <i class="fab fa-whatsapp"></i>
                     </div>
                 </div>
             </div>
@@ -1169,6 +1169,15 @@
             closeServicePopup();
         }
 
+        // Função para redirecionar cards de serviço para WhatsApp
+        function redirectToWhatsApp(serviceName) {
+            const whatsappNumber = '5513000000000'; // TROCAR PELO SEU NÚMERO
+            const message = `Olá! Vim pelo site da SignaProd e tenho interesse no serviço de *${serviceName}*. Gostaria de saber mais informações!`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1191,9 +1200,39 @@
                 return;
             }
             
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparando...';
             submitBtn.disabled = true;
             
+            // Capturar dados do formulário
+            const name = form.name.value;
+            const company = form.company.value;
+            const service = form.selectedService.value;
+            const message = form.message.value;
+            
+            // Criar mensagem formatada para WhatsApp
+            const whatsappMessage = `*Olá! Vim pelo site da SignaProd* 🚀
+
+*Nome:* ${name}
+*Email:* ${email}
+*Telefone:* ${phone}
+*Empresa:* ${company}
+*Serviço de Interesse:* ${service}
+
+*Mensagem:*
+${message}
+
+Aguardo retorno! 😊`;
+            
+            // Codificar mensagem para URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Número do WhatsApp (TROCAR PELO SEU NÚMERO)
+            const whatsappNumber = '5513000000000';
+            
+            // Criar URL do WhatsApp
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Enviar também para o Formspree (backup por email)
             const formData = new FormData(form);
             
             fetch(form.action, {
@@ -1204,32 +1243,30 @@
                 }
             })
             .then(response => {
-                if (response.ok) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
-                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                    
-                    setTimeout(() => {
-                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                        form.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                        window.location.href = '#home';
-                    }, 2000);
-                } else {
-                    throw new Error('Erro ao enviar');
-                }
-            })
-            .catch(error => {
-                submitBtn.innerHTML = '<i class="fas fa-times"></i> Erro ao Enviar';
-                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Redirecionando para WhatsApp...';
+                submitBtn.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
                 
+                // Redirecionar para WhatsApp após 1 segundo
                 setTimeout(() => {
-                    alert('Erro ao enviar. Tente novamente ou entre em contato via WhatsApp.');
+                    window.open(whatsappURL, '_blank');
+                    form.reset();
                     submitBtn.innerHTML = originalText;
                     submitBtn.style.background = '';
                     submitBtn.disabled = false;
-                }, 2000);
+                }, 1000);
+            })
+            .catch(error => {
+                // Mesmo em caso de erro no Formspree, enviar para WhatsApp
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Abrindo WhatsApp...';
+                submitBtn.style.background = 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)';
+                
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                    form.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 1000);
             });
         });
 
