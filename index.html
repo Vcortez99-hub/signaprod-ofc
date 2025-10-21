@@ -213,23 +213,24 @@
             padding-left: 1rem;
         }
 
-        /* Contact Toggle Button */
-        .contact-toggle {
+        /* WhatsApp Button */
+        .whatsapp-button {
             position: fixed;
             bottom: 2rem;
             right: 2rem;
             width: 60px;
             height: 60px;
-            background: var(--gradient-primary);
+            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.4);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
             z-index: 998;
             animation: float-button 3s ease-in-out infinite;
+            text-decoration: none;
         }
 
         @keyframes float-button {
@@ -237,14 +238,38 @@
             50% { transform: translateY(-10px); }
         }
 
-        .contact-toggle:hover {
+        .whatsapp-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 30px rgba(64, 224, 208, 0.6);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
         }
 
-        .contact-toggle i {
-            font-size: 1.5rem;
-            color: var(--dark);
+        .whatsapp-button i {
+            font-size: 1.8rem;
+            color: #ffffff;
+        }
+
+        /* Tooltip do WhatsApp */
+        .whatsapp-button::before {
+            content: 'Fale Conosco';
+            position: absolute;
+            right: 70px;
+            background: rgba(37, 211, 102, 0.95);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-button:hover::before {
+            opacity: 1;
+            visibility: visible;
+            right: 75px;
         }
 
         /* Contact Menu */
@@ -828,6 +853,21 @@
             .logo-image {
                 height: 45px;
             }
+
+            .whatsapp-button {
+                width: 55px;
+                height: 55px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .whatsapp-button i {
+                font-size: 1.6rem;
+            }
+
+            .whatsapp-button::before {
+                display: none;
+            }
         }
 
         /* Loading State */
@@ -908,6 +948,11 @@
         <a href="#services" onclick="toggleMobileMenu()">Serviços</a>
         <a href="#contact" onclick="toggleMobileMenu()">Contato</a>
     </div>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/551331501569" target="_blank" class="whatsapp-button" aria-label="Fale conosco pelo WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -1026,15 +1071,6 @@
             </div>
             <div class="contact-content">
                 <div class="contact-form">
-                    <!-- 
-                        IMPORTANTE: Este formulário usa Formspree
-                        Para configurar seu email:
-                        1. Acesse https://formspree.io
-                        2. Crie uma conta gratuita
-                        3. Crie um novo formulário
-                        4. Substitua 'SEU_EMAIL@gmail.com' pelo seu email real
-                        5. Ou substitua toda a action pelo novo endpoint do Formspree
-                    -->
                     <form id="contactForm" action="https://formspree.io/f/xyzjnkor" method="POST">
                         <div class="form-group">
                             <label for="name">Nome Completo</label>
@@ -1125,18 +1161,6 @@
 
         createParticles();
 
-        // Contact Menu Toggle
-        function toggleContactMenu() {
-            const menu = document.getElementById('contactMenu');
-            const overlay = document.getElementById('serviceOverlay');
-            menu.classList.toggle('active');
-            if (menu.classList.contains('active')) {
-                overlay.classList.add('active');
-            } else {
-                overlay.classList.remove('active');
-            }
-        }
-
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
@@ -1152,24 +1176,11 @@
         function closeServicePopup() {
             document.getElementById('servicePopup').classList.remove('active');
             document.getElementById('serviceOverlay').classList.remove('active');
-            // Also close contact menu if open
-            document.getElementById('contactMenu').classList.remove('active');
         }
 
         function selectService(service) {
             document.getElementById('selectedService').value = service;
             closeServicePopup();
-        }
-
-        // Função para rolar suavemente até o contato
-        function scrollToContact() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
         }
 
         // Form Submission
@@ -1180,31 +1191,23 @@
             const submitBtn = document.getElementById('submitBtn');
             const originalText = submitBtn.innerHTML;
             
-            // Validação adicional
             const email = form.email.value;
             const phone = form.phone.value;
             
-            // Validação de email
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 alert('Por favor, insira um email válido.');
                 return;
             }
             
-            // Validação de telefone brasileiro
             const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
             if (!phoneRegex.test(phone)) {
                 alert('Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX');
                 return;
             }
             
-            // Mostrar loading
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
             submitBtn.disabled = true;
-            
-            // Para Formspree funcionar:
-            // 1. Substitua 'SEU_EMAIL@gmail.com' no action do form pelo seu email real
-            // 2. Ou crie uma conta em formspree.io e use o endpoint fornecido
             
             const formData = new FormData(form);
             
@@ -1217,7 +1220,6 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // Sucesso
                     submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
                     submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
                     
@@ -1275,7 +1277,6 @@
             });
         }, observerOptions);
 
-        // Observe service cards
         document.querySelectorAll('.service-card').forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
@@ -1283,7 +1284,6 @@
             observer.observe(card);
         });
 
-        // Add hover effects
         document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
             button.addEventListener('mouseenter', function(e) {
                 const x = e.pageX - this.offsetLeft;
@@ -1307,7 +1307,6 @@
             });
         });
 
-        // Add ripple animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes ripple-effect {
