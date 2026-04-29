@@ -3,99 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignaProd - Soluções Tecnológicas e Transformação Digital</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>SignaProd — IA que vende e atende por você | Baixada Santista</title>
+    <meta name="description" content="Automação com IA pra imobiliárias, restaurantes, pousadas e clínicas da Baixada Santista. Atendimento 24/7 no WhatsApp, qualificação de leads e agendamento automático. Diagnóstico grátis.">
+    <meta name="keywords" content="automação IA Santos, chatbot WhatsApp Baixada Santista, IA imobiliária, IA restaurante, IA pousada, IA clínica, Guarujá, São Vicente, Praia Grande">
+    <meta property="og:title" content="SignaProd — IA que vende e atende por você">
+    <meta property="og:description" content="Automação com IA pra negócios da Baixada Santista. Diagnóstico grátis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.signaprod.com.br">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --primary: #40E0D0;
-            --primary-dark: #2FB5A7;
-            --secondary: #00CED1;
-            --accent: #00FFFF;
-            --dark: #0a0e27;
-            --darker: #060818;
-            --light: #ffffff;
+            --teal: #40E0D0;
+            --teal-bright: #5AF0E0;
+            --teal-dim: rgba(64, 224, 208, 0.4);
+            --coral: #FF8C61;
+            --ink: #060818;
+            --ink-2: #0a0e27;
+            --ink-3: #131a3a;
+            --paper: #F5F1E8;
             --gray: #94a3b8;
-            --gradient-primary: linear-gradient(135deg, #40E0D0 0%, #00CED1 50%, #00FFFF 100%);
-            --gradient-dark: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            --gradient-mesh: radial-gradient(at 40% 20%, hsla(189, 100%, 56%, 0.3) 0px, transparent 50%),
-                            radial-gradient(at 80% 0%, hsla(189, 100%, 70%, 0.2) 0px, transparent 50%),
-                            radial-gradient(at 0% 50%, hsla(189, 100%, 60%, 0.2) 0px, transparent 50%),
-                            radial-gradient(at 80% 50%, hsla(189, 100%, 65%, 0.15) 0px, transparent 50%),
-                            radial-gradient(at 0% 100%, hsla(189, 100%, 75%, 0.2) 0px, transparent 50%);
+            --gray-dim: #64748b;
+            --line: rgba(64, 224, 208, 0.15);
+            --line-soft: rgba(255, 255, 255, 0.06);
+
+            --font-display: 'Fraunces', 'Times New Roman', serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-body);
+            background: var(--ink);
+            color: white;
             line-height: 1.6;
-            color: var(--light);
-            background: var(--darker);
             overflow-x: hidden;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
+            font-feature-settings: "ss01", "ss02";
         }
 
-        body::before {
-            content: '';
+        /* Background atmosphere */
+        .atmosphere {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-mesh);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Animated Background Grid */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(64, 224, 208, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(64, 224, 208, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: grid-move 20s linear infinite;
+            inset: 0;
             z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(64, 224, 208, 0.18) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 100% 50%, rgba(64, 224, 208, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 0% 80%, rgba(255, 140, 97, 0.06) 0%, transparent 50%);
         }
 
-        @keyframes grid-move {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .grain {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         /* Header */
         header {
             position: fixed;
             top: 0;
-            width: 100%;
-            padding: 1rem 0;
-            background: rgba(10, 14, 39, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(64, 224, 208, 0.2);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.25rem 0;
+            background: rgba(6, 8, 24, 0.6);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border-bottom: 1px solid var(--line-soft);
+            transition: padding 0.3s ease, background 0.3s ease;
         }
 
         header.scrolled {
-            padding: 0.75rem 0;
-            background: rgba(10, 14, 39, 0.95);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
+            padding: 0.85rem 0;
+            background: rgba(6, 8, 24, 0.85);
         }
 
         nav {
@@ -104,1257 +102,1445 @@
             align-items: center;
         }
 
-        /* Logo SignaProd */
-        .logo-signaprod {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.65rem;
             text-decoration: none;
-            color: var(--primary);
-            transition: all 0.3s ease;
+            color: white;
         }
 
-        .logo-signaprod:hover {
-            transform: translateY(-2px);
-            filter: drop-shadow(0 5px 15px rgba(64, 224, 208, 0.5));
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-bright) 100%);
+            display: grid;
+            place-items: center;
+            color: var(--ink);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.15rem;
+            font-variation-settings: "SOFT" 30;
+            box-shadow: 0 8px 24px -8px rgba(64, 224, 208, 0.5);
         }
 
-        /* Logo da SignaProd */
-        .logo-image {
-            height: 60px;
-            width: auto;
-            border-radius: 8px;
-            filter: drop-shadow(0 2px 8px rgba(64, 224, 208, 0.2));
-            transition: all 0.3s ease;
+        .brand-name {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+            font-variation-settings: "SOFT" 50;
         }
 
-        .logo-signaprod:hover .logo-image {
-            transform: translateY(-1px);
-            filter: drop-shadow(0 4px 12px rgba(64, 224, 208, 0.3));
+        .brand-name em {
+            color: var(--teal);
+            font-style: normal;
+            font-weight: 600;
         }
 
-        /* Navigation */
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2.25rem;
             align-items: center;
+            list-style: none;
         }
 
         .nav-links a {
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
+            font-size: 0.92rem;
             font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: 0.95rem;
+            transition: color 0.2s ease;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width 0.3s ease;
-        }
+        .nav-links a:hover { color: var(--teal); }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--primary);
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0.5rem;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: rgba(10, 14, 39, 0.98);
-            backdrop-filter: blur(20px);
-            padding: 5rem 2rem;
-            transition: right 0.3s ease;
-            z-index: 999;
-            border-left: 1px solid rgba(64, 224, 208, 0.3);
-        }
-
-        .mobile-menu.active {
-            right: 0;
-        }
-
-        .mobile-menu a {
-            display: block;
-            color: var(--gray);
-            text-decoration: none;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(64, 224, 208, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu a:hover {
-            color: var(--primary);
-            padding-left: 1rem;
-        }
-
-        /* Contact Menu */
-        .contact-menu {
-            position: fixed;
-            right: -400px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 350px;
-            background: rgba(10, 14, 39, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(64, 224, 208, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: right 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .contact-menu.active {
-            right: 2rem;
-        }
-
-        .contact-menu-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--gray);
-            font-size: 2rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .contact-menu-close:hover {
-            color: var(--primary);
-        }
-
-        .contact-menu h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .contact-menu p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-menu a {
-            display: inline-block;
-            background: var(--gradient-primary);
-            color: var(--dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .contact-menu a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.4);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 120px 0 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.1) 0%, transparent 70%);
-            animation: rotate-slow 30s linear infinite;
-        }
-
-        @keyframes rotate-slow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-            animation: fadeInLeft 1s ease;
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
+        .nav-cta {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--gradient-primary);
-            color: var(--dark);
-            padding: 1rem 2rem;
-            border-radius: 50px;
+            padding: 0.65rem 1.15rem;
+            background: var(--teal);
+            color: var(--ink);
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(64, 224, 208, 0.3);
+            font-size: 0.9rem;
+            border-radius: 100px;
+            transition: all 0.25s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px -10px rgba(64, 224, 208, 0.6);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 11rem 0 6rem;
             position: relative;
             overflow: hidden;
         }
 
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(64, 224, 208, 0.5);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        /* Hero Image */
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
+        .hero-eyebrow {
+            display: inline-flex;
             align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.95rem;
+            background: rgba(64, 224, 208, 0.08);
+            border: 1px solid var(--teal-dim);
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--teal);
+            margin-bottom: 1.75rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--teal);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--teal);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            letter-spacing: -0.035em;
+            margin-bottom: 1.75rem;
+            font-variation-settings: "SOFT" 30, "opsz" 144;
+            max-width: 18ch;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 300;
+            color: var(--teal);
+            font-variation-settings: "SOFT" 100, "opsz" 144;
+        }
+
+        .hero h1 .strike {
             position: relative;
-            animation: fadeInRight 1s ease;
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.45);
         }
 
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-image svg {
-            width: 100%;
-            max-width: 500px;
-            height: auto;
-            filter: drop-shadow(0 0 30px rgba(64, 224, 208, 0.5));
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background: rgba(10, 14, 39, 0.5);
-            backdrop-filter: blur(10px);
-            position: relative;
-        }
-
-        .services::before {
+        .hero h1 .strike::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            left: -2%;
+            top: 52%;
+            width: 104%;
+            height: 5px;
+            background: var(--coral);
+            transform: rotate(-3deg);
+            border-radius: 2px;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 56ch;
+            margin-bottom: 2.5rem;
+            line-height: 1.55;
+        }
+
+        .hero-sub strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1.05rem 1.75rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: var(--ink);
+            box-shadow: 0 12px 36px -10px rgba(64, 224, 208, 0.45);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px -10px rgba(64, 224, 208, 0.65);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .hero-meta {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+
+        .hero-meta-item i { color: var(--teal); font-size: 0.85rem; }
+
+        /* Vertical decorative line */
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: 8%;
+            top: 30%;
+            width: 1px;
+            height: 220px;
+            background: linear-gradient(to bottom, transparent, var(--teal-dim), transparent);
+            display: none;
+        }
+
+        @media (min-width: 1100px) { .hero::after { display: block; } }
+
+        /* Section base */
+        section { position: relative; z-index: 2; }
+
+        .section-pad {
+            padding: 6rem 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--teal);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
         }
 
         .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-title p {
-            font-size: 1.125rem;
-            color: var(--gray);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: rgba(10, 14, 39, 0.8);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: var(--gradient-primary);
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: transparent;
-            cursor: pointer;
-        }
-
-        .service-link {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary);
-            font-size: 0.9rem;
-            font-weight: 600;
-            opacity: 0;
-            transform: translateX(10px);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .service-link {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: rgba(64, 224, 208, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--primary);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .service-icon {
-            background: var(--gradient-primary);
-            color: var(--dark);
-            transform: scale(1.1);
-        }
-        .service-card:hover h3,
-        .service-card:hover p {
-        color: #000000 !important;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 0;
-            position: relative;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: rgba(10, 14, 39, 0.8);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 20px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(64, 224, 208, 0.05) 0%, transparent 70%);
-            animation: rotate-slow 30s linear infinite;
-        }
-
-        .form-group {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2.25rem, 5vw, 3.75rem);
+            line-height: 1.05;
+            letter-spacing: -0.025em;
             margin-bottom: 1.5rem;
+            font-variation-settings: "SOFT" 50;
+            max-width: 22ch;
+        }
+
+        .section-title em {
+            font-style: italic;
+            color: var(--teal);
+            font-weight: 300;
+            font-variation-settings: "SOFT" 100;
+        }
+
+        .section-lead {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.65);
+            max-width: 60ch;
+            line-height: 1.6;
+        }
+
+        /* PROBLEM */
+        .problem {
+            border-top: 1px solid var(--line-soft);
+            border-bottom: 1px solid var(--line-soft);
+            background: rgba(255, 255, 255, 0.012);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-top: 3.5rem;
+        }
+
+        .problem-card {
+            padding: 1.75rem;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.015);
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: var(--teal-dim);
+            background: rgba(64, 224, 208, 0.025);
+            transform: translateY(-3px);
+        }
+
+        .problem-card-quote {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-style: italic;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.85);
+            font-variation-settings: "SOFT" 80;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card-quote::before {
+            content: '"';
+            color: var(--teal);
+            font-size: 2.2rem;
+            line-height: 0;
             position: relative;
-            z-index: 1;
+            top: 12px;
+            margin-right: 4px;
         }
 
-        .form-group label {
-            display: block;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
+        .problem-card-tag {
+            font-size: 0.78rem;
+            color: var(--teal);
             font-weight: 600;
-            font-size: 0.875rem;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(64, 224, 208, 0.05);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 10px;
-            color: var(--light);
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        /* VERTICALS */
+        .verticals-head {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            align-items: end;
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: rgba(64, 224, 208, 0.1);
-            box-shadow: 0 0 20px rgba(64, 224, 208, 0.2);
+        @media (min-width: 900px) {
+            .verticals-head {
+                grid-template-columns: 1.3fr 1fr;
+            }
         }
 
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(148, 163, 184, 0.5);
+        .vertical {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            border-top: 1px solid var(--line-soft);
+            padding: 3.5rem 0;
+            position: relative;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
+        @media (min-width: 900px) {
+            .vertical {
+                grid-template-columns: 0.4fr 1fr 0.7fr;
+                gap: 3rem;
+                align-items: start;
+            }
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 1rem 2rem;
-            background: var(--gradient-primary);
-            color: var(--dark);
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .vertical:last-child { border-bottom: 1px solid var(--line-soft); }
+
+        .vertical-num {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--teal);
+            font-variation-settings: "SOFT" 100;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .vertical-num small {
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-style: normal;
+            font-family: var(--font-body);
+            letter-spacing: 0.18em;
             text-transform: uppercase;
-            letter-spacing: 1px;
+        }
+
+        .vertical-body h3 {
+            font-family: var(--font-display);
+            font-size: clamp(1.85rem, 3vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.25rem;
+            font-variation-settings: "SOFT" 50;
+        }
+
+        .vertical-body h3 em {
+            font-style: italic;
+            color: var(--teal);
+            font-weight: 300;
+            font-variation-settings: "SOFT" 100;
+        }
+
+        .vertical-body p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.02rem;
+            line-height: 1.65;
+            max-width: 55ch;
+            margin-bottom: 1.5rem;
+        }
+
+        .vertical-features {
+            list-style: none;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .vertical-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+        }
+
+        .vertical-features li::before {
+            content: '';
+            flex-shrink: 0;
+            width: 16px;
+            height: 16px;
+            margin-top: 4px;
+            background: var(--teal);
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/contain no-repeat;
+                    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/contain no-repeat;
+        }
+
+        .vertical-side {
+            padding: 1.5rem;
+            background: rgba(64, 224, 208, 0.04);
+            border: 1px solid var(--teal-dim);
+            border-radius: 14px;
             position: relative;
             overflow: hidden;
         }
 
-        .submit-btn::before {
+        .vertical-side::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.4);
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Service Popup */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .service-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: rgba(10, 14, 39, 0.98);
-            border: 1px solid rgba(64, 224, 208, 0.3);
-            border-radius: 20px;
-            padding: 2rem;
-            width: 90%;
-            max-width: 400px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1002;
-        }
-
-        .service-popup.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .service-option {
-            padding: 1rem;
-            margin: 0.5rem 0;
-            background: rgba(64, 224, 208, 0.1);
-            border: 1px solid rgba(64, 224, 208, 0.2);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--light);
-            text-align: center;
-        }
-
-        .service-option:hover {
-            background: var(--gradient-primary);
-            color: var(--dark);
-            transform: translateX(10px);
-        }
-
-        /* Particles Animation */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: particle-float 15s infinite linear;
-        }
-
-        @keyframes particle-float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-content {
-                margin-bottom: 3rem;
-            }
-
-            .hero-image svg {
-                max-width: 300px;
-            }
-
-            .contact-menu {
-                width: calc(100% - 4rem);
-                max-width: 350px;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .logo-image {
-                height: 45px;
-            }
-
-            .whatsapp-button {
-                width: 55px;
-                height: 55px;
-                bottom: 1.5rem;
-                right: 1.5rem;
-            }
-
-            .whatsapp-button i {
-                font-size: 1.6rem;
-            }
-
-            .whatsapp-button::before {
-                display: none;
-            }
-        }
-
-        /* WhatsApp Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            animation: whatsapp-pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
-        }
-
-        .whatsapp-float:hover::after {
-            content: "Fale Conosco";
-            position: absolute;
-            right: 70px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #25D366;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            white-space: nowrap;
-            box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
-            opacity: 1;
-            animation: tooltip-appear 0.3s ease;
-        }
-
-        .whatsapp-float:hover::before {
-            content: "";
-            position: absolute;
-            right: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-left: 8px solid #25D366;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-        }
-
-        .whatsapp-float i {
-            color: white;
-            font-size: 1.8rem;
-        }
-
-        @keyframes tooltip-appear {
-            0% {
-                opacity: 0;
-                transform: translateY(-50%) translateX(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(-50%) translateX(0);
-            }
-        }
-
-        @keyframes whatsapp-pulse {
-            0% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.7);
-            }
-            100% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            .whatsapp-float i {
-                font-size: 1.6rem;
-            }
-        }
-
-        /* Loading State */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--darker);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loading.hidden {
-            opacity: 0;
+            right: 0;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(64, 224, 208, 0.15), transparent 70%);
             pointer-events: none;
         }
 
-        .loading-spinner {
-            width: 60px;
-            height: 60px;
-            border: 3px solid rgba(64, 224, 208, 0.2);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .vertical-side-stat {
+            font-family: var(--font-display);
+            font-size: 2.75rem;
+            font-weight: 400;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 0.4rem;
+            font-variation-settings: "SOFT" 70;
+            letter-spacing: -0.03em;
         }
 
-        @keyframes spin {
+        .vertical-side-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.25rem;
+            line-height: 1.4;
+        }
+
+        .vertical-side-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-bottom: 1px solid var(--teal);
+            padding-bottom: 2px;
+            transition: all 0.2s ease;
+        }
+
+        .vertical-side-cta:hover {
+            color: var(--teal);
+            gap: 0.7rem;
+        }
+
+        /* HOW IT WORKS */
+        .how {
+            background: rgba(255, 255, 255, 0.012);
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .how-card {
+            padding: 2rem 1.75rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: rgba(6, 8, 24, 0.4);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .how-card:hover {
+            border-color: var(--teal-dim);
+            transform: translateY(-4px);
+        }
+
+        .how-step {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--teal);
+            margin-bottom: 1rem;
+            font-variation-settings: "SOFT" 100;
+        }
+
+        .how-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.2;
+            letter-spacing: -0.015em;
+            margin-bottom: 0.75rem;
+            font-variation-settings: "SOFT" 50;
+        }
+
+        .how-card p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* PROOF / RESULTS */
+        .proof {
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0;
+            margin-top: 3.5rem;
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+        }
+
+        .proof-stat {
+            padding: 2.25rem 1.5rem;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .proof-stat-num {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 400;
+            color: var(--teal);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-variation-settings: "SOFT" 60;
+            letter-spacing: -0.025em;
+        }
+
+        .proof-stat-label {
+            font-size: 0.92rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        /* ABOUT / LOCAL */
+        .about {
+            background: linear-gradient(180deg, transparent 0%, rgba(64, 224, 208, 0.03) 100%);
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 900px) {
+            .about-grid { grid-template-columns: 1.1fr 1fr; gap: 5rem; }
+        }
+
+        .about-text h2 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            font-variation-settings: "SOFT" 50;
+        }
+
+        .about-text h2 em {
+            font-style: italic;
+            color: var(--teal);
+            font-weight: 300;
+            font-variation-settings: "SOFT" 100;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+        }
+
+        .about-cities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .city-chip {
+            padding: 0.45rem 0.95rem;
+            background: rgba(64, 224, 208, 0.08);
+            border: 1px solid var(--teal-dim);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--teal);
+            font-weight: 500;
+        }
+
+        .about-visual {
+            position: relative;
+            aspect-ratio: 1;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: rgba(6, 8, 24, 0.6);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .about-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(64, 224, 208, 0.18), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(255, 140, 97, 0.08), transparent 60%);
+        }
+
+        .about-visual-orb {
+            position: relative;
+            width: 70%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background:
+                conic-gradient(from 0deg, var(--teal), transparent 30%, var(--teal) 50%, transparent 80%, var(--teal));
+            opacity: 0.6;
+            animation: spin-slow 30s linear infinite;
+        }
+
+        @keyframes spin-slow {
             to { transform: rotate(360deg); }
         }
 
-        /* Glow Effects */
-        .glow-text {
-            text-shadow: 0 0 20px rgba(64, 224, 208, 0.5);
+        .about-visual-content {
+            position: absolute;
+            text-align: center;
+            font-family: var(--font-display);
+            color: white;
         }
 
-        .glow-box {
-            box-shadow: 0 0 30px rgba(64, 224, 208, 0.3);
+        .about-visual-content .big {
+            font-size: 5rem;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1;
+            color: var(--teal);
+            font-variation-settings: "SOFT" 100;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-visual-content .small {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            font-weight: 500;
+        }
+
+        /* FAQ */
+        .faq {
+            border-top: 1px solid var(--line-soft);
+        }
+
+        .faq-list {
+            margin-top: 3rem;
+            max-width: 900px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--line);
+            padding: 1.5rem 0;
+        }
+
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 500;
+            line-height: 1.3;
+            list-style: none;
+            font-variation-settings: "SOFT" 50;
+            transition: color 0.2s ease;
+        }
+
+        .faq-q::-webkit-details-marker { display: none; }
+
+        .faq-q:hover { color: var(--teal); }
+
+        .faq-q::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--teal);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+
+        .faq-a {
+            margin-top: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            max-width: 70ch;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            border-top: 1px solid var(--line-soft);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(64, 224, 208, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta-final-inner {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cta-final h2 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(2.25rem, 5vw, 4rem);
+            line-height: 1.02;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+            font-variation-settings: "SOFT" 50;
+        }
+
+        .cta-final h2 em {
+            font-style: italic;
+            color: var(--teal);
+            font-weight: 300;
+            font-variation-settings: "SOFT" 100;
+        }
+
+        .cta-final p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2.5rem;
+            line-height: 1.55;
+        }
+
+        .cta-final-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 3.5rem 0 2rem;
+            border-top: 1px solid var(--line-soft);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (min-width: 700px) {
+            .footer-inner { grid-template-columns: 1.5fr 1fr 1fr; }
+        }
+
+        .footer-tagline {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.85rem;
+            font-style: italic;
+            font-variation-settings: "SOFT" 80;
+            max-width: 32ch;
+        }
+
+        .footer h5 {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--teal);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .footer a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover { color: var(--teal); }
+
+        .footer-bottom {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line-soft);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* WhatsApp Float */
+        .wa-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            color: white;
+            font-size: 1.7rem;
+            text-decoration: none;
+            z-index: 50;
+            box-shadow: 0 12px 30px -8px rgba(37, 211, 102, 0.55);
+            transition: all 0.25s ease;
+        }
+
+        .wa-float::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #25D366;
+            opacity: 0.5;
+            animation: wa-pulse 2.5s ease-out infinite;
+        }
+
+        @keyframes wa-pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 8, 24, 0.97);
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+            display: grid;
+            gap: 1.75rem;
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+            font-variation-settings: "SOFT" 60;
+        }
+
+        @media (max-width: 800px) {
+            .nav-links { display: none; }
+            .menu-btn { display: block; }
+            .hero { padding: 8rem 0 4rem; }
+            .section-pad { padding: 4.5rem 0; }
+            .vertical { padding: 3rem 0; gap: 1.5rem; }
+            .vertical-num { font-size: 1.85rem; }
+            .hero-meta { gap: 1.25rem; flex-direction: column; }
+            .proof-grid { grid-template-columns: repeat(2, 1fr); }
+            .wa-float {
+                width: 56px;
+                height: 56px;
+                bottom: 1.1rem;
+                right: 1.1rem;
+            }
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="loading-spinner"></div>
-    </div>
+    <div class="atmosphere"></div>
+    <div class="grain"></div>
 
-    <!-- Background Elements -->
-    <div class="bg-grid"></div>
-    <div class="particles" id="particles"></div>
-
-    <!-- Header -->
+    <!-- HEADER -->
     <header id="header">
         <div class="container">
             <nav>
-                <a href="#home" class="logo-signaprod">
-                    <img src="https://i.ibb.co/RV5vP4r/66fc7b5e-eae2-4f92-9c24-30804761e6ff.jpg" alt="SignaProd" class="logo-image">
+                <a href="#" class="brand">
+                    <div class="brand-mark">S</div>
+                    <span class="brand-name">Signa<em>Prod</em></span>
                 </a>
-                
-                <div class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#services">Serviços</a>
-                    <a href="#contact">Contato</a>
-                </div>
-                
-                <div class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</div>
+
+                <ul class="nav-links">
+                    <li><a href="#solucoes">Soluções</a></li>
+                    <li><a href="#como-funciona">Como funciona</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://wa.me/551331501569?text=Oi!%20Vim%20do%20site%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." class="nav-cta" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i> Diagnóstico grátis
+                    </a></li>
+                </ul>
+
+                <button class="menu-btn" id="menuBtn" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
+    <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" onclick="toggleMobileMenu()">Início</a>
-        <a href="#services" onclick="toggleMobileMenu()">Serviços</a>
-        <a href="#contact" onclick="toggleMobileMenu()">Contato</a>
+        <ul>
+            <li><a href="#solucoes">Soluções</a></li>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://wa.me/551331501569?text=Oi!%20Vim%20do%20site%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." target="_blank" rel="noopener" style="color: var(--teal);">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a></li>
+        </ul>
     </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container" style="display: flex; align-items: center; gap: 4rem;">
-            <div class="hero-content">
-                <h1 class="glow-text">Inovação Tecnológica e Transformação Digital</h1>
-                <p>Criamos soluções tecnológicas sob medida que impulsionam negócios para o futuro.</p>
-                <a href="#contact" class="cta-button">
-                    Solicite uma Consultoria
-                    <i class="fas fa-arrow-right"></i>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-eyebrow">
+                Automação com IA · Baixada Santista
+            </div>
+
+            <h1>
+                IA que <em>vende</em><br>
+                e atende<br>
+                <span class="strike">por você</span> 24/7.
+            </h1>
+
+            <p class="hero-sub">
+                Pra <strong>imobiliárias, restaurantes, pousadas e clínicas</strong> que perdem cliente porque não conseguem responder rápido. A gente automatiza atendimento, agenda e qualificação no WhatsApp — você foca em quem importa.
+            </p>
+
+            <div class="hero-actions">
+                <a href="https://wa.me/551331501569?text=Oi!%20Vim%20do%20site%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." class="btn btn-primary" target="_blank" rel="noopener">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Quero o diagnóstico grátis
+                </a>
+                <a href="#solucoes" class="btn btn-ghost">
+                    Ver soluções
+                    <i class="fas fa-arrow-down" style="font-size: 0.85rem;"></i>
                 </a>
             </div>
-            <div class="hero-image">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
-                    <g fill="#40E0D0">
-                        <path d="M100 20c-44.1 0-80 35.9-80 80s35.9 80 80 80 80-35.9 80-80-35.9-80-80-80zm0 150c-38.6 0-70-31.4-70-70s31.4-70 70-70 70 31.4 70 70-31.4 70-70 70z"/>
-                        <path d="M100 40c-33.1 0-60 26.9-60 60s26.9 60 60 60 60-26.9 60-60-26.9-60-60-60zm0 110c-27.6 0-50-22.4-50-50s22.4-50 50-50 50 22.4 50 50-22.4 50-50 50z"/>
-                        <path d="M30 100H170M100 30V170"/>
-                        <path d="M41 60L159 140M41 140L159 60"/>
-                        <rect x="80" y="160" width="40" height="20" rx="5"/>
-                        <rect x="40" y="160" width="20" height="20" rx="5"/>
-                        <rect x="140" y="160" width="20" height="20" rx="5"/>
-                        <path d="M145 140 L150 130 L155 140 L150 145 Z"/>
-                        <path d="M50 45 L55 35 L60 45 L55 50 Z"/>
-                        <path d="M145 60 L150 50 L155 60 L150 65 Z"/>
-                    </g>
-                </svg>
+
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <i class="fas fa-check"></i>
+                    Sem mensalidade pra começar
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-check"></i>
+                    15 minutos de conversa
+                </div>
+                <div class="hero-meta-item">
+                    <i class="fas fa-check"></i>
+                    Feito na Baixada Santista
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- PROBLEM -->
+    <section class="problem section-pad">
         <div class="container">
-            <div class="section-title">
-                <h2>Nossos Serviços</h2>
-                <p>Soluções estratégicas para impulsionar sua transformação digital</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card" onclick="window.location.href='servicos/otimizacao-de-processos.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>Otimização de Processos</h3>
-                    <p>Automatizamos e otimizamos seus processos empresariais, eliminando gargalos e aumentando a eficiência operacional </p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+            <span class="section-label">Soa familiar?</span>
+            <h2 class="section-title">A dor que <em>todo</em> negócio local conhece.</h2>
+            <p class="section-lead">Cliente chega no WhatsApp às 22h. Você só vê na manhã seguinte. Ele já fechou com outro. De novo.</p>
+
+            <div class="problem-grid">
+                <div class="problem-card reveal">
+                    <p class="problem-card-quote">Perdi 3 visitas semana passada porque ninguém respondeu o WhatsApp à noite.</p>
+                    <span class="problem-card-tag">Imobiliárias</span>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/alocacao-profissionais.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-user-plus"></i>
-                    </div>
-                    <h3>Alocação de Profissionais de TI</h3>
-                    <p>Identificação e alocação dos melhores talentos em tecnologia para sua equipe.</p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="problem-card reveal">
+                    <p class="problem-card-quote">Toda hora gente perguntando se tem mesa, e eu cozinhando.</p>
+                    <span class="problem-card-tag">Restaurantes</span>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/transformacao-digital.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Transformação Digital com IA</h3>
-                    <p>Implementação de estratégias de transformação digital com inteligência artificial.</p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="problem-card reveal">
+                    <p class="problem-card-quote">Reserva no domingo à noite vai pro concorrente porque eu não vi.</p>
+                    <span class="problem-card-tag">Pousadas</span>
                 </div>
-                <div class="service-card" onclick="window.location.href='servicos/agentes-ia.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3>Criação de Agentes de IA</h3>
-                    <p>Otimização de fluxos de trabalho com agentes de IA personalizados para sua empresa.</p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-                <div class="service-card" onclick="window.location.href='servicos/rag-personalizado.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
-                    <h3>Criação de RAG Personalizado</h3>
-                    <p>Soluções de Retrieval-Augmented Generation para seus documentos e dados específicos.</p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
-                </div>
-                <div class="service-card" onclick="window.location.href='servicos/desenvolvimento-mvp.html'">
-                    <div class="service-icon">
-                        <i class="fas fa-stopwatch"></i>
-                    </div>
-                    <h3>Desenvolvimento de MVP</h3>
-                    <p>Acelere sua validação de mercado com MVPs otimizados e entrega ágil.</p>
-                    <div class="service-link">
-                        <span>Saiba mais</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </div>
+                <div class="problem-card reveal">
+                    <p class="problem-card-quote">Recepção parando consulta pra agendar. Paciente esperando, fila andando devagar.</p>
+                    <span class="problem-card-tag">Clínicas</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <!-- VERTICALS / SOLUTIONS -->
+    <section id="solucoes" class="section-pad">
         <div class="container">
-            <div class="section-title">
-                <h2>Contate-nos</h2>
-                <p>Preencha o formulário para solicitar um serviço</p>
+            <div class="verticals-head">
+                <div>
+                    <span class="section-label">Soluções por segmento</span>
+                    <h2 class="section-title">Cada negócio tem sua dor. <em>Cada um</em> a sua IA.</h2>
+                </div>
+                <p class="section-lead">A gente não vende "automação genérica". Construímos fluxos específicos pra cada vertical — porque imobiliária não é restaurante, e clínica não é pousada.</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-form">
-                    <form id="contactForm" action="https://formspree.io/f/xyzjnkor" method="POST">
-                        <div class="form-group">
-                            <label for="name">Nome Completo</label>
-                            <input type="text" id="name" name="name" placeholder="Nome Completo" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" id="email" name="email" placeholder="E-mail" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Telefone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="selectedService">Serviço</label>
-                            <input type="text" id="selectedService" name="service" placeholder="Selecione um serviço" readonly onclick="openServicePopup()" required style="cursor: pointer;">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem</label>
-                            <textarea id="message" name="message" placeholder="Mensagem" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn" id="submitBtn">Enviar Solicitação</button>
-                    </form>
+
+            <!-- 01 IMOBILIÁRIAS -->
+            <div class="vertical reveal">
+                <div class="vertical-num">
+                    01 <small>Imobiliárias</small>
+                </div>
+                <div class="vertical-body">
+                    <h3>Atendimento que <em>qualifica</em> e agenda visita sozinho.</h3>
+                    <p>Cliente chega perguntando "tem casa em Guarujá até 500 mil?" e em segundos recebe 3 opções, agenda visita e cai pronto pro corretor. Sem perder lead à noite, no almoço ou no fim de semana.</p>
+                    <ul class="vertical-features">
+                        <li>Atendimento 24/7 no WhatsApp com qualificação por orçamento, bairro e urgência</li>
+                        <li>Busca automática no seu portfólio + envio de fotos e ficha</li>
+                        <li>Agendamento de visita direto na agenda do corretor</li>
+                        <li>Follow-up automático pra leads frios e indecisos</li>
+                    </ul>
+                </div>
+                <div class="vertical-side">
+                    <div class="vertical-side-stat">+38%</div>
+                    <p class="vertical-side-label">de visitas agendadas no piloto que rodamos com imobiliária no Guarujá</p>
+                    <a href="https://wa.me/551331501569?text=Oi!%20Tenho%20uma%20imobili%C3%A1ria%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." target="_blank" rel="noopener" class="vertical-side-cta">
+                        Quero pra minha imobiliária <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 02 RESTAURANTES -->
+            <div class="vertical reveal">
+                <div class="vertical-num">
+                    02 <small>Restaurantes</small>
+                </div>
+                <div class="vertical-body">
+                    <h3>Reserva, cardápio e delivery — <em>sem você parar</em> de cozinhar.</h3>
+                    <p>O bot atende todo mundo no WhatsApp: confirma reserva, manda cardápio digital, anota pedido pra delivery e ainda lembra o cliente da promoção da quinta. Sua atendente fica livre pra atender mesa.</p>
+                    <ul class="vertical-features">
+                        <li>Reserva automática com confirmação e lembrete um dia antes</li>
+                        <li>Cardápio digital interativo no chat (foto, preço, descrição)</li>
+                        <li>Pedido de delivery via WhatsApp com integração ao caixa</li>
+                        <li>Campanha de fidelização pra cliente que sumiu há 30 dias</li>
+                    </ul>
+                </div>
+                <div class="vertical-side">
+                    <div class="vertical-side-stat">−4h/dia</div>
+                    <p class="vertical-side-label">de tempo da equipe respondendo "tem mesa pras 20h?" no WhatsApp</p>
+                    <a href="https://wa.me/551331501569?text=Oi!%20Tenho%20um%20restaurante%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." target="_blank" rel="noopener" class="vertical-side-cta">
+                        Quero pro meu restaurante <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 03 POUSADAS -->
+            <div class="vertical reveal">
+                <div class="vertical-num">
+                    03 <small>Pousadas</small>
+                </div>
+                <div class="vertical-body">
+                    <h3>Reserva direta, <em>sem pagar</em> 18% pra plataforma.</h3>
+                    <p>Hóspede manda mensagem de domingo à noite perguntando se tem vaga pro feriado. O bot consulta sua disponibilidade, manda fotos do quarto, valor e link de pagamento. Reserva fechada antes do concorrente acordar.</p>
+                    <ul class="vertical-features">
+                        <li>Consulta de disponibilidade em tempo real (integrado ao seu PMS ou planilha)</li>
+                        <li>Pré-check-in automático com formulário e foto do documento</li>
+                        <li>Upsell de passeios, café da manhã e late check-out</li>
+                        <li>Pedido automático de avaliação no Booking/Google após o check-out</li>
+                    </ul>
+                </div>
+                <div class="vertical-side">
+                    <div class="vertical-side-stat">24/7</div>
+                    <p class="vertical-side-label">resposta em segundos — quem responde antes, fecha. Mesmo de madrugada.</p>
+                    <a href="https://wa.me/551331501569?text=Oi!%20Tenho%20uma%20pousada%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." target="_blank" rel="noopener" class="vertical-side-cta">
+                        Quero pra minha pousada <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 04 CLÍNICAS -->
+            <div class="vertical reveal">
+                <div class="vertical-num">
+                    04 <small>Clínicas</small>
+                </div>
+                <div class="vertical-body">
+                    <h3>Recepção <em>livre</em> pra atender quem está na clínica.</h3>
+                    <p>Paciente agenda, remarca e recebe lembrete sozinho — sem ligação, sem fila, sem secretária parando atendimento presencial. Faltas caem porque o lembrete chega 24h e 2h antes da consulta.</p>
+                    <ul class="vertical-features">
+                        <li>Agendamento direto na agenda do(a) profissional</li>
+                        <li>Lembrete automático com confirmação (reduz faltas em até 60%)</li>
+                        <li>Triagem inicial pra direcionar pra especialidade certa</li>
+                        <li>Retorno programado: paciente que fez exame há 6 meses recebe convite</li>
+                    </ul>
+                </div>
+                <div class="vertical-side">
+                    <div class="vertical-side-stat">−60%</div>
+                    <p class="vertical-side-label">de faltas em consulta com lembrete automático 24h e 2h antes</p>
+                    <a href="https://wa.me/551331501569?text=Oi!%20Tenho%20uma%20cl%C3%ADnica%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." target="_blank" rel="noopener" class="vertical-side-cta">
+                        Quero pra minha clínica <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Selection Popup -->
-    <div class="overlay" id="serviceOverlay" onclick="closeServicePopup()"></div>
-    <div class="service-popup" id="servicePopup">
-        <div class="service-popup-content">
-            <div class="service-option" onclick="selectService('Otimização de Processos')">Otimização de Processos</div>
-            <div class="service-option" onclick="selectService('Alocação de Profissionais de TI')">Alocação de Profissionais de TI</div>
-            <div class="service-option" onclick="selectService('Transformação Digital com IA')">Transformação Digital com IA</div>
-            <div class="service-option" onclick="selectService('Criação de Agentes de IA')">Criação de Agentes de IA</div>
-            <div class="service-option" onclick="selectService('Criação de RAG Personalizado')">Criação de RAG Personalizado</div>
-            <div class="service-option" onclick="selectService('Desenvolvimento de MVP')">Desenvolvimento de MVP</div>
+    <!-- HOW IT WORKS -->
+    <section id="como-funciona" class="how section-pad">
+        <div class="container">
+            <span class="section-label">Como funciona</span>
+            <h2 class="section-title">Do <em>diagnóstico</em> ao primeiro lead automatizado em 14 dias.</h2>
+            <p class="section-lead">Sem reunião que não termina, sem proposta de 30 páginas. Direto ao ponto.</p>
+
+            <div class="how-grid">
+                <div class="how-card reveal">
+                    <div class="how-step">— passo um</div>
+                    <h4>Diagnóstico grátis (15 min)</h4>
+                    <p>Conversa rápida no WhatsApp pra entender seu negócio, onde tá perdendo cliente e o que vale a pena automatizar primeiro. Sem compromisso.</p>
+                </div>
+                <div class="how-card reveal">
+                    <div class="how-step">— passo dois</div>
+                    <h4>Proposta sob medida</h4>
+                    <p>Em até 48h você recebe um plano com escopo, prazo e investimento. Tudo o que automatizamos, com exemplos reais do seu segmento.</p>
+                </div>
+                <div class="how-card reveal">
+                    <div class="how-step">— passo três</div>
+                    <h4>Implementação em 7-14 dias</h4>
+                    <p>Configuramos no seu WhatsApp, treinamos a IA com seus dados, integramos com sua agenda/sistema e ajustamos junto com você até ficar redondo.</p>
+                </div>
+                <div class="how-card reveal">
+                    <div class="how-step">— passo quatro</div>
+                    <h4>Acompanhamento contínuo</h4>
+                    <p>Não é "instalou e tchau". A gente monitora, ajusta os fluxos pelos dados reais e expande pra novas automações conforme você cresce.</p>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- PROOF -->
+    <section class="proof section-pad">
+        <div class="container">
+            <span class="section-label">Resultados</span>
+            <h2 class="section-title">Números que importam pra <em>quem paga a conta</em>.</h2>
+            <p class="section-lead">Cada caso é um caso. Mas a média do que vimos rodando entre nossos primeiros clientes:</p>
+
+            <div class="proof-grid">
+                <div class="proof-stat reveal">
+                    <div class="proof-stat-num">24/7</div>
+                    <div class="proof-stat-label">Atendimento que nunca dorme — nem no feriado, nem às 3 da manhã</div>
+                </div>
+                <div class="proof-stat reveal">
+                    <div class="proof-stat-num">&lt;30s</div>
+                    <div class="proof-stat-label">Tempo médio de primeira resposta no WhatsApp</div>
+                </div>
+                <div class="proof-stat reveal">
+                    <div class="proof-stat-num">+40%</div>
+                    <div class="proof-stat-label">de leads qualificados sem aumentar o time</div>
+                </div>
+                <div class="proof-stat reveal">
+                    <div class="proof-stat-num">14d</div>
+                    <div class="proof-stat-label">Do "fechei contrato" até a primeira venda automatizada</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="sobre" class="about section-pad">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-label">Quem somos</span>
+                    <h2>Feito <em>aqui</em> da Baixada,<br> pra negócios <em>daqui</em>.</h2>
+                    <p>SignaProd é automação com IA pensada pro empresário que conhece o cliente pelo nome, atende no WhatsApp e não tem departamento de TI.</p>
+                    <p>A gente fala português claro, conhece a realidade do mercado de Santos, Guarujá, São Vicente e Praia Grande, e entende que sua margem é apertada e seu tempo é curto. Por isso projeto barato pra começar e que paga a conta rápido.</p>
+                    <div class="about-cities">
+                        <span class="city-chip">Santos</span>
+                        <span class="city-chip">Guarujá</span>
+                        <span class="city-chip">São Vicente</span>
+                        <span class="city-chip">Praia Grande</span>
+                        <span class="city-chip">Cubatão</span>
+                        <span class="city-chip">Bertioga</span>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="about-visual-orb"></div>
+                    <div class="about-visual-content">
+                        <div class="big">IA</div>
+                        <div class="small">local · prática · que vende</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq section-pad">
+        <div class="container">
+            <span class="section-label">Dúvidas frequentes</span>
+            <h2 class="section-title">Pergunta que <em>todo mundo</em> faz antes de fechar.</h2>
+
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary class="faq-q">Quanto custa?</summary>
+                    <p class="faq-a">Depende do que automatizar. Tem cliente nosso pagando R$ 500/mês, tem cliente pagando R$ 3.500. No diagnóstico grátis a gente te dá um valor real pro seu caso, sem enrolação. E sempre com retorno calculado — se não pagar a conta em 90 dias, não faz sentido.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-q">Vou ter que trocar meu WhatsApp ou meu sistema?</summary>
+                    <p class="faq-a">Não. A gente integra com o WhatsApp Business que você já usa, e com a maioria dos sistemas do mercado (Imobzi, iFood, Trinks, Gestor de pousadas, planilha do Excel...). Quando não dá pra integrar direto, criamos uma ponte.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-q">Em quanto tempo fica pronto?</summary>
+                    <p class="faq-a">Entre 7 e 14 dias úteis pra primeira automação no ar. Casos mais complexos (integração com PMS de hotel, prontuário eletrônico de clínica) podem ir até 30 dias.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-q">A IA vai falar bem? Não vai parecer um robô estranho?</summary>
+                    <p class="faq-a">A gente treina a IA com o tom da sua marca — pode ser formal, pode ser informal, pode ser bem-humorada. E sempre tem botão de "falar com humano" quando o cliente pede ou quando a conversa fica complexa demais.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-q">Funciona pra negócio pequeno mesmo, ou só pra grande?</summary>
+                    <p class="faq-a">Funciona melhor pra pequeno e médio, na verdade. Empresa grande já tem TI pra isso. Nossos clientes ideais são negócios de 1 a 50 funcionários que querem competir com os grandes sem contratar um time inteiro.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-q">E se eu não souber o que quero automatizar?</summary>
+                    <p class="faq-a">Não tem problema — esse é o ponto do diagnóstico grátis. A gente conversa, entende como você trabalha hoje, e te aponta onde tá o gargalo. Você decide se faz sentido ou não.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final section-pad">
+        <div class="container">
+            <div class="cta-final-inner">
+                <h2>Bora ver se faz <em>sentido</em> pro seu negócio?</h2>
+                <p>15 minutos no WhatsApp, sem compromisso. Você sai do papo sabendo exatamente o que dá pra automatizar e quanto custa.</p>
+                <div class="cta-final-buttons">
+                    <a href="https://wa.me/551331501569?text=Oi!%20Vim%20do%20site%20e%20quero%20o%20diagn%C3%B3stico%20gr%C3%A1tis." class="btn btn-primary" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        Falar agora no WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/signaprod.ai/" class="btn btn-ghost" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-instagram"></i>
+                        Ver no Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div>
+                    <a href="#" class="brand">
+                        <div class="brand-mark">S</div>
+                        <span class="brand-name">Signa<em>Prod</em></span>
+                    </a>
+                    <p class="footer-tagline">Automação com IA pra negócios da Baixada Santista. Local, prática, que vende.</p>
+                </div>
+
+                <div>
+                    <h5>Soluções</h5>
+                    <ul>
+                        <li><a href="#solucoes">Imobiliárias</a></li>
+                        <li><a href="#solucoes">Restaurantes</a></li>
+                        <li><a href="#solucoes">Pousadas</a></li>
+                        <li><a href="#solucoes">Clínicas</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5>Contato</h5>
+                    <ul>
+                        <li><a href="https://wa.me/551331501569" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> (13) 3150-1569</a></li>
+                        <li><a href="https://www.instagram.com/signaprod.ai/" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> @signaprod.ai</a></li>
+                        <li><a href="mailto:comercial@signaprod.com">comercial@signaprod.com</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 SignaProd · Baixada Santista, SP</span>
+                <span>Feito com IA, mas pensado por gente.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/551331501569?text=Oi!%20Vim%20do%20site." class="wa-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <script>
-        // Loading Screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 500);
+        // Header scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 30);
         });
 
-        // Header Scroll Effect
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
         });
-
-        // Smooth Scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+        mobileMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-xmark');
             });
         });
 
-        // Particles Generation
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 30;
-
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        createParticles();
-
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('active');
-        }
-
-        // Service Popup Functions
-        function openServicePopup() {
-            document.getElementById('servicePopup').classList.add('active');
-            document.getElementById('serviceOverlay').classList.add('active');
-        }
-
-        function closeServicePopup() {
-            document.getElementById('servicePopup').classList.remove('active');
-            document.getElementById('serviceOverlay').classList.remove('active');
-        }
-
-        function selectService(service) {
-            document.getElementById('selectedService').value = service;
-            closeServicePopup();
-        }
-
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = this;
-            const submitBtn = document.getElementById('submitBtn');
-            const originalText = submitBtn.innerHTML;
-            
-            const email = form.email.value;
-            const phone = form.phone.value;
-            
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Por favor, insira um email válido.');
-                return;
-            }
-            
-            const phoneRegex = /^\(\d{2}\) \d{4,5}-\d{4}$/;
-            if (!phoneRegex.test(phone)) {
-                alert('Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX');
-                return;
-            }
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-            
-            const formData = new FormData(form);
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> Enviado com Sucesso!';
-                    submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-                    
-                    setTimeout(() => {
-                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                        form.reset();
-                        submitBtn.innerHTML = originalText;
-                        submitBtn.style.background = '';
-                        submitBtn.disabled = false;
-                        window.location.href = '#home';
-                    }, 2000);
-                } else {
-                    throw new Error('Erro ao enviar');
-                }
-            })
-            .catch(error => {
-                submitBtn.innerHTML = '<i class="fas fa-times"></i> Erro ao Enviar';
-                submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
-                
-                setTimeout(() => {
-                    alert('Erro ao enviar o formulário. Por favor, tente novamente ou entre em contato por email: comercial@signaprod.com');
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.style.background = '';
-                    submitBtn.disabled = false;
-                }, 2000);
-            });
-        });
-
-        // Phone Mask
-        const phoneInput = document.getElementById('phone');
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) {
-                if (value.length <= 10) {
-                    value = value.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3');
-                } else {
-                    value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-                }
-            }
-            e.target.value = value;
-        });
-
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('in');
+                    io.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 
-        document.querySelectorAll('.service-card').forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(card);
-        });
-
-        document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
-            button.addEventListener('mouseenter', function(e) {
-                const x = e.pageX - this.offsetLeft;
-                const y = e.pageY - this.offsetTop;
-                
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.width = '0';
-                ripple.style.height = '0';
-                ripple.style.borderRadius = '50%';
-                ripple.style.background = 'rgba(255, 255, 255, 0.5)';
-                ripple.style.animation = 'ripple-effect 0.6s ease-out';
-                ripple.style.pointerEvents = 'none';
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => ripple.remove(), 600);
-            });
-        });
-
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple-effect {
-                to {
-                    width: 200px;
-                    height: 200px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     </script>
-
-    <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/+551331501569" target="_blank" class="whatsapp-float" title="Fale conosco no WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 </body>
 </html>
