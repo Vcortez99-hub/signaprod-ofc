@@ -1,7 +1,9 @@
 # Site da SignaProd
 
 Site institucional estático publicado pelo GitHub Pages em **www.signaprod.com.br** (arquivo `CNAME`).
-Mesma identidade da plataforma de atendimento: azul-maré, turquesa de sinal, um ponto de coral e as bandeiras do Código Internacional de Sinais.
+Mesma identidade da plataforma de atendimento: petróleo `#0B343A`, aqua `#3DFEF7` e a fonte Schibsted Grotesk (900 nos títulos, como o logotipo).
+
+Arquivos da marca em `assets/brand/`: logotipo (`signaprod-logo.svg`, aqua para fundo escuro), ícone, favicons e, em `assets/og.png`, a imagem que aparece quando o link é compartilhado.
 
 ## Páginas
 
